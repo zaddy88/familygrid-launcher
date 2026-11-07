@@ -23,6 +23,10 @@ the linked Google pages before each step. This guide was written in November 202
 
 ## 1. Make the app Play-ready (code work)
 
+> **Status (v0.5.0): done.** Targets API 36 with edge-to-edge insets and the new back handling;
+> `build-aab.ps1` builds and signs the bundle; `tools/new-release-key.ps1` creates the upload key.
+> Follow [PLAY_STORE.md](PLAY_STORE.md) for the upload itself.
+
 1. **Target Android 16 (API 36).** Since **31 Aug 2026**, new phone apps must target API 36
    ([Google: target API requirements](https://developer.android.com/google/play/requirements/target-sdk)).
    FamilyGrid targets 34 today.

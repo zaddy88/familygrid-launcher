@@ -18,3 +18,7 @@ Thumbs.db
 
 # keep screenshots for the README
 !docs/**
+
+# Play bundles and helper output
+*.aab
+*.apks

@@ -3,8 +3,8 @@ $ErrorActionPreference = "Stop"
 $sdk   = "E:\Learning\android-modernization\sdk"
 $proj  = "E:\Learning\android-modernization\parenthub"
 $jdk   = "C:\Program Files\Microsoft\jdk-17.0.21.21-hotspot"
-$bt    = "$sdk\build-tools\34.0.0"
-$plat  = "$sdk\platforms\android-34\android.jar"
+$bt    = "$sdk\build-tools\36.0.0"
+$plat  = "$sdk\platforms\android-36\android.jar"
 
 Set-Location $proj
 Remove-Item "$proj\obj","$proj\out" -Recurse -Force -ErrorAction SilentlyContinue
@@ -21,7 +21,7 @@ if ($LASTEXITCODE -ne 0) { throw "aapt2 link failed" }
 Write-Output "2) javac"
 $oldPref = $ErrorActionPreference
 $ErrorActionPreference = 'Continue'
-& "$jdk\bin\javac.exe" -encoding utf-8 --release 11 -classpath $plat -d "$proj\obj" ((Get-ChildItem "$proj\src\dev\fluxnova\familygrid\*.java").FullName + (Get-ChildItem "$proj\obj\gen" -Recurse -Filter *.java).FullName) 2>&1 | ForEach-Object { Write-Output $_ }
+& "$jdk\bin\javac.exe" -encoding utf-8 --release 17 -classpath $plat -d "$proj\obj" ((Get-ChildItem "$proj\src\dev\fluxnova\familygrid\*.java").FullName + (Get-ChildItem "$proj\obj\gen" -Recurse -Filter *.java).FullName) 2>&1 | ForEach-Object { Write-Output $_ }
 $ErrorActionPreference = $oldPref
 if ($LASTEXITCODE -ne 0) { throw "javac failed" }
 

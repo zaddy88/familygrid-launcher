@@ -114,9 +114,14 @@ public class NavBarService extends AccessibilityService {
                 | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             PixelFormat.TRANSLUCENT);
         lp.gravity = Gravity.BOTTOM;
-        // Window layout stops above the system bar; shift down so we sit on top of it
-        // instead of covering the bottom of the app (send boxes, tab bars...).
-        lp.y = -systemNavHeight();
+        // Sit exactly on top of the system navigation bar instead of covering the bottom of
+        // the app (send boxes, tab bars...).
+        if (android.os.Build.VERSION.SDK_INT >= 30) {
+            lp.setFitInsetsTypes(0); // don't let the system push the window above its bars
+            lp.y = 0;
+        } else {
+            lp.y = -systemNavHeight(); // older Android stops window layout above the bar
+        }
         try {
             wm.addView(row, lp);
             bar = row;

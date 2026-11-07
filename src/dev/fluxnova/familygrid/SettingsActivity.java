@@ -65,6 +65,7 @@ public class SettingsActivity extends Activity {
 
     @Override protected void onCreate(Bundle b) {
         super.onCreate(b);
+        EdgeToEdge.onBack(this, this::onBackPressed);
         boolean unlocked = (b != null && b.getBoolean(EXTRA_UNLOCKED))
             || getIntent().getBooleanExtra(EXTRA_UNLOCKED, false);
         // Every way in (home screen, app-drawer icon) goes through the same PIN check.
@@ -107,7 +108,9 @@ public class SettingsActivity extends Activity {
         } else {
             tiles = HubConfig.load(this);
         }
-        setContentView(buildUi());
+        View ui = buildUi();
+        EdgeToEdge.padForSystemBars(ui);
+        setContentView(ui);
         uiBuilt = true;
         refreshStatus();
     }

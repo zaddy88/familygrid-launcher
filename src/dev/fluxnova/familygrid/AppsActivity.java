@@ -76,6 +76,7 @@ public class AppsActivity extends Activity {
         });
         root.addView(list, new LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
+        EdgeToEdge.padForSystemBars(root);
         setContentView(root);
     }
 

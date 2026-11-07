@@ -93,6 +93,7 @@ public class MainActivity extends Activity {
 
     @Override protected void onCreate(Bundle b) {
         super.onCreate(b);
+        EdgeToEdge.onBack(this, () -> {}); // a home screen has nowhere to go back to
         createdLang = HubConfig.language(this);
         if (!HubConfig.setupDone(this)) {
             startActivity(new Intent(this, SettingsActivity.class)
@@ -110,7 +111,9 @@ public class MainActivity extends Activity {
             textScale = HubConfig.textScale(this);
             columns = HubConfig.columns(this);
             tileScale = columns == 2 ? 1.3f : columns == 4 ? 0.8f : 1f;
-            setContentView(buildUi());
+            View ui = buildUi();
+            EdgeToEdge.padForSystemBars(ui);
+            setContentView(ui);
             rebuildGrid();
         }
 
