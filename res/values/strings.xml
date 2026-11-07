@@ -158,7 +158,7 @@
     <!-- short guides shown before sending people to Android settings -->
     <string name="guide_title">What to do next</string>
     <string name="guide_home">On the next screen, choose \"FamilyGrid Launcher\" as the Home app.\n\nIf Android asks, tap \"Always\".</string>
-    <string name="guide_call">Android will ask if FamilyGrid may make phone calls. Tap \"Allow\".\n\nIf the app\'s settings open instead, tap Permissions → Phone → Allow.</string>
-    <string name="guide_bt">Android will ask about \"Nearby devices\". Tap \"Allow\".\n\nIf the app\'s settings open instead, tap Permissions → Nearby devices → Allow.</string>
+    <string name="guide_call">Android will ask if FamilyGrid may make phone calls. Tap \"Allow\".\n\nIf the app\'s settings open instead, tap Permissions › Phone › Allow.</string>
+    <string name="guide_bt">Android will ask about \"Nearby devices\". Tap \"Allow\".\n\nIf the app\'s settings open instead, tap Permissions › Nearby devices › Allow.</string>
     <string name="continue_btn">Continue</string>
 </resources>

@@ -153,7 +153,7 @@
     <!-- short guides shown before sending people to Android settings -->
     <string name="guide_title">आगे क्या करें</string>
     <string name="guide_home">अगली स्क्रीन पर \"FamilyGrid Launcher\" को होम ऐप चुनें।\n\nअगर Android पूछे, तो \"हमेशा\" (Always) दबाएँ।</string>
-    <string name="guide_call">Android पूछेगा कि क्या FamilyGrid फ़ोन कॉल कर सकता है। \"अनुमति दें\" (Allow) दबाएँ।\n\nअगर ऐप की सेटिंग्स खुलें, तो Permissions → Phone → Allow दबाएँ।</string>
-    <string name="guide_bt">Android \"आस-पास के डिवाइस\" (Nearby devices) के बारे में पूछेगा। \"अनुमति दें\" दबाएँ।\n\nअगर ऐप की सेटिंग्स खुलें, तो Permissions → Nearby devices → Allow दबाएँ।</string>
+    <string name="guide_call">Android पूछेगा कि क्या FamilyGrid फ़ोन कॉल कर सकता है। \"अनुमति दें\" (Allow) दबाएँ।\n\nअगर ऐप की सेटिंग्स खुलें, तो Permissions › Phone › Allow दबाएँ।</string>
+    <string name="guide_bt">Android \"आस-पास के डिवाइस\" (Nearby devices) के बारे में पूछेगा। \"अनुमति दें\" दबाएँ।\n\nअगर ऐप की सेटिंग्स खुलें, तो Permissions › Nearby devices › Allow दबाएँ।</string>
     <string name="continue_btn">जारी रखें</string>
 </resources>

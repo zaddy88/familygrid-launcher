@@ -153,7 +153,7 @@
     <!-- short guides shown before sending people to Android settings -->
     <string name="guide_title">آگے کیا کرنا ہے</string>
     <string name="guide_home">اگلی اسکرین پر \"FamilyGrid Launcher\" کو ہوم ایپ کے طور پر چنیں۔\n\nاگر پوچھا جائے تو \"ہمیشہ\" (Always) دبائیں۔</string>
-    <string name="guide_call">اینڈرائیڈ پوچھے گا کہ کیا فیملی گرڈ فون کال کر سکتا ہے۔ \"اجازت دیں\" (Allow) دبائیں۔\n\nاگر اس کے بجائے ایپ کی سیٹنگز کھلیں تو Permissions ← Phone ← Allow دبائیں۔</string>
-    <string name="guide_bt">اینڈرائیڈ \"قریبی آلات\" (Nearby devices) کے بارے میں پوچھے گا۔ \"اجازت دیں\" دبائیں۔\n\nاگر ایپ کی سیٹنگز کھلیں تو Permissions ← Nearby devices ← Allow دبائیں۔</string>
+    <string name="guide_call">اینڈرائیڈ پوچھے گا کہ کیا فیملی گرڈ فون کال کر سکتا ہے۔ \"اجازت دیں\" (Allow) دبائیں۔\n\nاگر اس کے بجائے ایپ کی سیٹنگز کھلیں تو Permissions ‹ Phone ‹ Allow دبائیں۔</string>
+    <string name="guide_bt">اینڈرائیڈ \"قریبی آلات\" (Nearby devices) کے بارے میں پوچھے گا۔ \"اجازت دیں\" دبائیں۔\n\nاگر ایپ کی سیٹنگز کھلیں تو Permissions ‹ Nearby devices ‹ Allow دبائیں۔</string>
     <string name="continue_btn">جاری رکھیں</string>
 </resources>

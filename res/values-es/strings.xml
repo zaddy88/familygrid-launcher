@@ -153,7 +153,7 @@
     <!-- short guides shown before sending people to Android settings -->
     <string name="guide_title">Qué hacer ahora</string>
     <string name="guide_home">En la siguiente pantalla, elige \"FamilyGrid Launcher\" como app de inicio.\n\nSi Android pregunta, toca \"Siempre\".</string>
-    <string name="guide_call">Android preguntará si FamilyGrid puede hacer llamadas. Toca \"Permitir\".\n\nSi se abren los ajustes de la app, toca Permisos → Teléfono → Permitir.</string>
-    <string name="guide_bt">Android preguntará por \"Dispositivos cercanos\". Toca \"Permitir\".\n\nSi se abren los ajustes de la app, toca Permisos → Dispositivos cercanos → Permitir.</string>
+    <string name="guide_call">Android preguntará si FamilyGrid puede hacer llamadas. Toca \"Permitir\".\n\nSi se abren los ajustes de la app, toca Permisos › Teléfono › Permitir.</string>
+    <string name="guide_bt">Android preguntará por \"Dispositivos cercanos\". Toca \"Permitir\".\n\nSi se abren los ajustes de la app, toca Permisos › Dispositivos cercanos › Permitir.</string>
     <string name="continue_btn">Continuar</string>
 </resources>

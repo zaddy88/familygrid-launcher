@@ -153,7 +153,7 @@
     <!-- short guides shown before sending people to Android settings -->
     <string name="guide_title">ماذا تفعل بعد ذلك</string>
     <string name="guide_home">في الشاشة التالية، اختر \"FamilyGrid Launcher\" كتطبيق الشاشة الرئيسية.\n\nإذا سأل أندرويد، اضغط \"دائماً\".</string>
-    <string name="guide_call">سيسأل أندرويد إن كان مسموحاً لـ FamilyGrid بإجراء المكالمات. اضغط \"سماح\".\n\nإذا فُتحت إعدادات التطبيق بدلاً من ذلك، اضغط الأذونات ← الهاتف ← سماح.</string>
-    <string name="guide_bt">سيسأل أندرويد عن \"الأجهزة المجاورة\". اضغط \"سماح\".\n\nإذا فُتحت إعدادات التطبيق بدلاً من ذلك، اضغط الأذونات ← الأجهزة المجاورة ← سماح.</string>
+    <string name="guide_call">سيسأل أندرويد إن كان مسموحاً لـ FamilyGrid بإجراء المكالمات. اضغط \"سماح\".\n\nإذا فُتحت إعدادات التطبيق بدلاً من ذلك، اضغط الأذونات ‹ الهاتف ‹ سماح.</string>
+    <string name="guide_bt">سيسأل أندرويد عن \"الأجهزة المجاورة\". اضغط \"سماح\".\n\nإذا فُتحت إعدادات التطبيق بدلاً من ذلك، اضغط الأذونات ‹ الأجهزة المجاورة ‹ سماح.</string>
     <string name="continue_btn">متابعة</string>
 </resources>
