@@ -13,7 +13,7 @@
 <p align="center">
   <a href="https://github.com/zaddy88/familygrid-launcher/releases/latest/download/FamilyGrid.apk"><img alt="Download APK" src="https://img.shields.io/badge/Download-APK-2ea44f?style=for-the-badge&logo=android&logoColor=white"></a>
   <img alt="Android 7.0+" src="https://img.shields.io/badge/Android-7.0%2B-3DDC84?style=for-the-badge&logo=android&logoColor=white">
-  <img alt="Version 0.4.1" src="https://img.shields.io/badge/version-0.4.1-0D47A1?style=for-the-badge">
+  <img alt="Version 0.5.0" src="https://img.shields.io/badge/version-0.5.0-0D47A1?style=for-the-badge">
   <img alt="License Apache 2.0" src="https://img.shields.io/badge/license-Apache%202.0-blue?style=for-the-badge">
   <a href="https://whop.com/checkout/plan_Xy4vheVKTXtxv"><img alt="Buy me a coffee" src="https://img.shields.io/badge/Buy%20me%20a%20coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black"></a>
 </p>
