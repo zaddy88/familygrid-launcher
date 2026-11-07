@@ -38,7 +38,6 @@ import java.util.Locale;
 
 // UI TIER: builds the home screen in code and renders live Wi-Fi / battery state.
 public class MainActivity extends Activity {
-    private static final int COLUMNS = 3;
     private static final long SAFETY_TICK_MS = 10_000;   // re-check Wi-Fi validation now and then
     private static final long HOLD_TO_EDIT_MS = 2_000;   // hold the clock this long to open the editor
     private static final String PREF_HINT_SHOWN = "hint_shown";
@@ -47,6 +46,9 @@ public class MainActivity extends Activity {
     private TextView batteryChip;
     private TextView bluetoothChip;
     private float textScale = 1f;
+    private int columns = 3;
+    /** Tiles get bigger with fewer columns and smaller with more (3 columns = 1.0). */
+    private float tileScale = 1f;
     private String createdLang = "";
     private TextView clockTime;
     private TextView clockDate;
@@ -106,6 +108,8 @@ public class MainActivity extends Activity {
         if (stamp != loadedStamp) {
             loadedStamp = stamp;
             textScale = HubConfig.textScale(this);
+            columns = HubConfig.columns(this);
+            tileScale = columns == 2 ? 1.3f : columns == 4 ? 0.8f : 1f;
             setContentView(buildUi());
             rebuildGrid();
         }
@@ -156,8 +160,11 @@ public class MainActivity extends Activity {
         // Row 1: big clock (hold it for 2 s to open the editor) + date
         LinearLayout clockBox = new LinearLayout(this);
         clockBox.setOrientation(LinearLayout.HORIZONTAL);
-        clockBox.setGravity(Gravity.BOTTOM);
-        clockBox.setPadding(dp(22), dp(18), dp(22), dp(4));
+        clockBox.setGravity(Gravity.CENTER_VERTICAL);
+        clockBox.setPadding(dp(22), dp(14), dp(18), dp(2));
+        // time on top, date underneath: never collides, whatever the language or time format
+        LinearLayout timeCol = new LinearLayout(this);
+        timeCol.setOrientation(LinearLayout.VERTICAL);
         clockTime = new TextView(this);
         clockTime.setTextColor(Color.WHITE);
         sp(clockTime, 44);
@@ -167,12 +174,32 @@ public class MainActivity extends Activity {
         clockDate.setTextColor(0xFF8FA1B3);
         sp(clockDate, 19);
         clockDate.setTypeface(Typeface.DEFAULT_BOLD);
-        clockDate.setGravity(Gravity.END);
-        clockDate.setPadding(0, 0, 0, dp(4));
-        clockBox.addView(clockTime);
-        clockBox.addView(clockDate, new LinearLayout.LayoutParams(0,
+        clockDate.setSingleLine(true);
+        clockDate.setPadding(dp(2), dp(2), 0, 0);
+        // pin both to the reading-start side (left in English, right in Urdu/Arabic)
+        LinearLayout.LayoutParams startLp = new LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        startLp.gravity = Gravity.START;
+        timeCol.addView(clockTime, startLp);
+        LinearLayout.LayoutParams dateLp = new LinearLayout.LayoutParams(startLp);
+        dateLp.gravity = Gravity.START;
+        timeCol.addView(clockDate, dateLp);
+        clockBox.addView(timeCol, new LinearLayout.LayoutParams(0,
             ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-        clockBox.setOnTouchListener(this::onClockTouch);
+        timeCol.setOnTouchListener(this::onClockTouch);
+
+        // Visible way into settings: tap explains, hold opens (PIN still applies).
+        TextView gear = new TextView(this);
+        gear.setText("⚙");
+        gear.setTextColor(0xFF5C6B7C);
+        sp(gear, 26);
+        gear.setGravity(Gravity.CENTER);
+        gear.setPadding(dp(16), dp(8), dp(4), dp(8));
+        gear.setContentDescription(getString(R.string.settings_app_label));
+        gear.setOnClickListener(v ->
+            Toast.makeText(this, R.string.settings_gear_hint, Toast.LENGTH_SHORT).show());
+        gear.setOnLongClickListener(v -> { openEditor.run(); return true; });
+        clockBox.addView(gear);
 
         // Row 2: equal-width status chips (each can be switched off in the editor)
         LinearLayout chips = new LinearLayout(this);
@@ -277,12 +304,12 @@ public class MainActivity extends Activity {
 
         LinearLayout row = null;
         for (int i = 0; i < tiles.size(); i++) {
-            if (i % COLUMNS == 0) {
+            if (i % columns == 0) {
                 row = new LinearLayout(this);
                 row.setOrientation(LinearLayout.HORIZONTAL);
                 LinearLayout.LayoutParams rl = new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f);
-                row.setMinimumHeight(dp(Math.round(130 * textScale)));
+                row.setMinimumHeight(dp(Math.round(130 * textScale * tileScale)));
                 gridBox.addView(row, rl);
             }
             LinearLayout.LayoutParams tl = new LinearLayout.LayoutParams(0,
@@ -290,15 +317,40 @@ public class MainActivity extends Activity {
             tl.setMargins(dp(8), dp(8), dp(8), dp(8));
             row.addView(makeTile(tiles.get(i)), tl);
         }
+        gridBox.post(this::fitRows);
         // pad the last row with invisible cells so its tiles keep the same width
-        int rest = tiles.size() % COLUMNS;
+        int rest = tiles.size() % columns;
         if (rest != 0) {
-            for (int i = rest; i < COLUMNS; i++) {
+            for (int i = rest; i < columns; i++) {
                 LinearLayout.LayoutParams tl = new LinearLayout.LayoutParams(0, 1, 1f);
                 tl.setMargins(dp(8), dp(8), dp(8), dp(8));
                 row.addView(new View(this), tl);
             }
         }
+    }
+
+    /**
+     * Rows share the free height, but a tile may be at most ~1.5x taller than it is
+     * wide. Without this cap, 4 tiles per row became tall thin pills. Spare height
+     * stays empty below the grid; past the minimum height the grid scrolls instead.
+     */
+    private void fitRows() {
+        int rows = gridBox.getChildCount();
+        View scroll = (View) gridBox.getParent();
+        if (rows == 0 || scroll == null || !(gridBox.getChildAt(0) instanceof LinearLayout)) return;
+        int margin = dp(8);
+        int avail = scroll.getHeight() - gridBox.getPaddingTop() - gridBox.getPaddingBottom();
+        int innerW = gridBox.getWidth() - gridBox.getPaddingLeft() - gridBox.getPaddingRight();
+        int tileW = innerW / columns - 2 * margin;
+        int maxRow = Math.round(tileW * 1.5f) + 2 * margin;
+        int minRow = dp(Math.round(130 * textScale * tileScale));
+        int rowH = Math.max(minRow, Math.min(avail / rows, maxRow));
+        for (int i = 0; i < rows; i++) {
+            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) gridBox.getChildAt(i).getLayoutParams();
+            lp.height = rowH;
+            lp.weight = 0;
+        }
+        gridBox.requestLayout();
     }
 
     private View makeTile(HubConfig.Tile t) {
@@ -307,7 +359,8 @@ public class MainActivity extends Activity {
         LinearLayout tile = new LinearLayout(this);
         tile.setOrientation(LinearLayout.VERTICAL);
         tile.setGravity(Gravity.CENTER);
-        tile.setPadding(dp(6), dp(10), dp(6), dp(10));
+        int vpad = columns >= 4 ? 4 : 10;
+        tile.setPadding(dp(4), dp(vpad), dp(4), dp(vpad));
         GradientDrawable bg = new GradientDrawable(GradientDrawable.Orientation.TL_BR,
             new int[]{t.colorStart, t.colorEnd});
         bg.setCornerRadius(dp(22));
@@ -315,7 +368,7 @@ public class MainActivity extends Activity {
         tile.setElevation(dp(4));
         if (!available) tile.setAlpha(0.45f);
 
-        int iconSize = dp(Math.round(52 * textScale));
+        int iconSize = dp(Math.round(52 * textScale * tileScale));
         tile.addView(makeIcon(t), new LinearLayout.LayoutParams(iconSize, iconSize));
 
         TextView label = new TextView(this);
@@ -326,15 +379,15 @@ public class MainActivity extends Activity {
         label.setGravity(Gravity.CENTER);
         label.setMaxLines(1);
         label.setEllipsize(TextUtils.TruncateAt.END);
-        int maxSp = Math.round(19 * textScale);
+        int maxSp = Math.round(19 * textScale * Math.min(tileScale, 1.15f));
         label.setTextSize(TypedValue.COMPLEX_UNIT_SP, maxSp);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // shrink long names to fit instead of cutting them off
-            label.setAutoSizeTextTypeUniformWithConfiguration(11, maxSp, 1, TypedValue.COMPLEX_UNIT_SP);
+            label.setAutoSizeTextTypeUniformWithConfiguration(columns >= 4 ? 8 : 11, maxSp, 1, TypedValue.COMPLEX_UNIT_SP);
         }
         LinearLayout.LayoutParams ll = new LinearLayout.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT, dp(Math.round(34 * textScale)));
-        ll.topMargin = dp(8);
+            ViewGroup.LayoutParams.MATCH_PARENT, dp(Math.round(34 * textScale * Math.min(tileScale, 1f))));
+        ll.topMargin = dp(columns >= 4 ? 4 : 8);
         tile.addView(label, ll);
 
         if (!available) {
@@ -382,7 +435,28 @@ public class MainActivity extends Activity {
             circle.setShape(GradientDrawable.OVAL);
             circle.setColor(Color.WHITE);
             badge.setBackground(circle);
-            return badge;
+
+            // small phone badge on the corner so a person tile clearly means "call"
+            int size = dp(Math.round(52 * textScale * tileScale));
+            int small = Math.round(size * 0.46f);
+            TextView phone = new TextView(this);
+            phone.setText("📞");
+            phone.setTextSize(TypedValue.COMPLEX_UNIT_PX, small * 0.55f);
+            phone.setGravity(Gravity.CENTER);
+            phone.setIncludeFontPadding(false);
+            GradientDrawable dot = new GradientDrawable();
+            dot.setShape(GradientDrawable.OVAL);
+            dot.setColor(Color.WHITE);
+            dot.setStroke(Math.max(2, small / 12), t.colorEnd);
+            phone.setBackground(dot);
+
+            FrameLayout box = new FrameLayout(this);
+            int inset = Math.round(small * 0.18f); // shrink the circle a little to make room
+            FrameLayout.LayoutParams cl = new FrameLayout.LayoutParams(size - inset, size - inset,
+                Gravity.TOP | Gravity.START);
+            box.addView(badge, cl);
+            box.addView(phone, new FrameLayout.LayoutParams(small, small, Gravity.BOTTOM | Gravity.END));
+            return box;
         }
         Drawable d = appIcon(t);
         if (d != null) {

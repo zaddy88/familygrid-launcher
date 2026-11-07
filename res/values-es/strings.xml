@@ -31,6 +31,8 @@
     <string name="tile_camera">Cámara</string>
     <string name="tile_photos">Fotos</string>
     <string name="tile_quran">Corán</string>
+    <string name="tile_messages">Mensajes</string>
+    <string name="tile_browser">Internet</string>
     <string name="tile_fm_radio">Radio FM</string>
 
     <string name="title_welcome">Bienvenido a FamilyGrid</string>
@@ -111,4 +113,29 @@
     <string name="label_back_button">Botón Atrás</string>
     <string name="label_home_button">Botón Inicio</string>
     <string name="label_apps_button">Botón Apps</string>
+
+    <!-- setup checklist, grid, settings entry -->
+    <string name="settings_app_label">Ajustes de FamilyGrid</string>
+    <string name="settings_gear_hint">Mantén pulsado ⚙ para abrir los ajustes</string>
+    <string name="section_checklist">Comprobación de configuración</string>
+    <string name="check_home">FamilyGrid es la pantalla de inicio</string>
+    <string name="check_navbar">Botones grandes de Atrás / Inicio</string>
+    <string name="check_call">Permiso para llamar directamente</string>
+    <string name="check_bt">Permiso para ver dispositivos Bluetooth</string>
+    <string name="tag_required">Obligatorio</string>
+    <string name="tag_optional">Opcional</string>
+    <string name="status_done">✓ Listo</string>
+    <string name="status_todo">Sin configurar</string>
+    <string name="action_fix">Configurar</string>
+    <string name="section_look">Aspecto</string>
+    <string name="grid_label">Mosaicos por fila</string>
+    <string name="grid_2">2 · Los más grandes</string>
+    <string name="grid_3">3 · Grandes</string>
+    <string name="grid_4">4 · Más</string>
+
+    <!-- Play policy: prominent disclosure before the accessibility service is switched on -->
+    <string name="navbar_disclosure_title">Sobre los botones grandes</string>
+    <string name="navbar_disclosure_msg">FamilyGrid usa el servicio de Accesibilidad de Android solo para dibujar los botones grandes de Atrás, Inicio y Apps, y para ir Atrás o al Inicio cuando los tocas.\n\nNo lee lo que hay en tu pantalla. No se recopila, guarda ni comparte nada.\n\nEn la siguiente pantalla, busca \"FamilyGrid big buttons\" y actívalo.</string>
+    <string name="agree_continue">Aceptar y continuar</string>
+    <string name="no_thanks">No, gracias</string>
 </resources>

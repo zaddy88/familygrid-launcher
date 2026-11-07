@@ -209,6 +209,20 @@ final class HubConfig {
         prefs(c).edit().putInt("text_scale", i).apply();
     }
 
+    // Grid style: how many tiles per row. Rows follow from the number of tiles
+    // (and scroll past ~4 rows), so only the column count is a choice.
+    static final int[] COLUMN_CHOICES = {2, 3, 4};
+    static final int[] COLUMN_NAMES = {R.string.grid_2, R.string.grid_3, R.string.grid_4};
+
+    static int columns(Context c) {
+        int v = prefs(c).getInt("columns", 3);
+        return (v >= 2 && v <= 4) ? v : 3;
+    }
+
+    static void setColumns(Context c, int cols) {
+        prefs(c).edit().putInt("columns", cols).apply();
+    }
+
     // Optional status chips and buttons on the home screen.
     static final String SHOW_WIFI = "show_wifi";
     static final String SHOW_BATTERY = "show_battery";
@@ -277,7 +291,7 @@ final class HubConfig {
      */
     static List<Tile> relabelDefaults(Context oldLang, Context newLang, List<Tile> tiles) {
         int[] ids = {R.string.tile_phone, R.string.tile_camera, R.string.tile_photos,
-                     R.string.tile_quran, R.string.tile_fm_radio};
+                     R.string.tile_messages, R.string.tile_browser};
         List<Tile> out = new ArrayList<>();
         for (Tile t : tiles) {
             Tile r = t;
@@ -327,18 +341,27 @@ final class HubConfig {
         return result;
     }
 
+    /**
+     * Built-in suggestions. Brand apps use fixed package names; generic jobs (messages,
+     * camera, photos, internet) are looked up on each phone, so they work on any brand.
+     * Anything this phone doesn't have is simply left out.
+     */
     private static List<Tile> defaultTiles(Context c) {
         List<Tile> l = new ArrayList<>();
         l.add(new Tile(TYPE_DIALER, c.getString(R.string.tile_phone), null, null, "📞", 0xFF42A5F5, 0xFF0D47A1));
-        l.add(Tile.app("WhatsApp",  "com.whatsapp",                   "💬", new int[]{0xFF25D366, 0xFF0E7A55}));
-        l.add(Tile.app("Messenger", "com.facebook.orca",              "✉️", new int[]{0xFF00B2FF, 0xFF0062CC}));
-        l.add(Tile.app("Facebook",  "com.facebook.katana",            "f",  new int[]{0xFF4A7DF2, 0xFF0B3D91}));
-        l.add(Tile.app("YouTube",   "com.google.android.youtube",     "▶",  new int[]{0xFFFF5252, 0xFFB71C1C}));
-        l.add(Tile.app(c.getString(R.string.tile_camera),  "com.transsion.camera",           "📷", new int[]{0xFF78909C, 0xFF37474F}));
-        l.add(Tile.app(c.getString(R.string.tile_photos),  "com.google.android.apps.photos", "🖼️", new int[]{0xFFFFD54F, 0xFFF57C00}));
-        l.add(Tile.app(c.getString(R.string.tile_quran),  "com.pakdata.QuranMajeed",        "📖", new int[]{0xFF26A69A, 0xFF00473D}));
-        l.add(Tile.app(c.getString(R.string.tile_fm_radio),  "com.transsion.fmradio",          "📻", new int[]{0xFFAB47BC, 0xFF4A148C}));
+        addApp(l, "WhatsApp", "com.whatsapp", "💬", 0xFF25D366, 0xFF0E7A55);
+        addApp(l, c.getString(R.string.tile_messages), HubActions.appFor(c, HubActions.ROLE_SMS), "✉️", 0xFF26A69A, 0xFF00473D);
+        addApp(l, c.getString(R.string.tile_camera), HubActions.appFor(c, HubActions.ROLE_CAMERA), "📷", 0xFF78909C, 0xFF37474F);
+        addApp(l, c.getString(R.string.tile_photos), HubActions.appFor(c, HubActions.ROLE_GALLERY), "🖼️", 0xFFFFD54F, 0xFFF57C00);
+        addApp(l, "YouTube", "com.google.android.youtube", "▶", 0xFFFF5252, 0xFFB71C1C);
+        addApp(l, "Facebook", "com.facebook.katana", "f", 0xFF4A7DF2, 0xFF0B3D91);
+        addApp(l, "Messenger", "com.facebook.orca", "💬", 0xFF00B2FF, 0xFF0062CC);
+        addApp(l, c.getString(R.string.tile_browser), HubActions.appFor(c, HubActions.ROLE_BROWSER), "🌐", 0xFFFF8A65, 0xFFBF360C);
         return l;
+    }
+
+    private static void addApp(List<Tile> l, String label, String pkg, String glyph, int a, int b) {
+        if (pkg != null) l.add(Tile.app(label, pkg, glyph, new int[]{a, b}));
     }
 
     static String initials(String name) {

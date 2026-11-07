@@ -31,6 +31,8 @@
     <string name="tile_camera">कैमरा</string>
     <string name="tile_photos">फ़ोटो</string>
     <string name="tile_quran">क़ुरआन</string>
+    <string name="tile_messages">संदेश</string>
+    <string name="tile_browser">इंटरनेट</string>
     <string name="tile_fm_radio">एफ़एम रेडियो</string>
 
     <string name="title_welcome">FamilyGrid में आपका स्वागत है</string>
@@ -111,4 +113,29 @@
     <string name="label_back_button">वापस बटन</string>
     <string name="label_home_button">होम बटन</string>
     <string name="label_apps_button">ऐप्स बटन</string>
+
+    <!-- setup checklist, grid, settings entry -->
+    <string name="settings_app_label">FamilyGrid सेटिंग्स</string>
+    <string name="settings_gear_hint">सेटिंग्स खोलने के लिए ⚙ को दबाकर रखें</string>
+    <string name="section_checklist">सेटअप जाँच</string>
+    <string name="check_home">FamilyGrid होम स्क्रीन है</string>
+    <string name="check_navbar">बड़े वापस / होम बटन</string>
+    <string name="check_call">सीधे कॉल करने की अनुमति</string>
+    <string name="check_bt">ब्लूटूथ डिवाइस देखने की अनुमति</string>
+    <string name="tag_required">ज़रूरी</string>
+    <string name="tag_optional">वैकल्पिक</string>
+    <string name="status_done">✓ हो गया</string>
+    <string name="status_todo">सेट नहीं है</string>
+    <string name="action_fix">सेट करें</string>
+    <string name="section_look">दिखावट</string>
+    <string name="grid_label">एक पंक्ति में टाइलें</string>
+    <string name="grid_2">2 · सबसे बड़ी</string>
+    <string name="grid_3">3 · बड़ी</string>
+    <string name="grid_4">4 · ज़्यादा</string>
+
+    <!-- Play policy: prominent disclosure before the accessibility service is switched on -->
+    <string name="navbar_disclosure_title">बड़े बटनों के बारे में</string>
+    <string name="navbar_disclosure_msg">FamilyGrid, Android की Accessibility सेवा का उपयोग केवल बड़े वापस, होम और ऐप्स बटन दिखाने और उन्हें दबाने पर वापस या होम जाने के लिए करता है।\n\nयह आपकी स्क्रीन पर कुछ नहीं पढ़ता। कोई जानकारी इकट्ठा, सेव या शेयर नहीं की जाती।\n\nअगली स्क्रीन पर \"FamilyGrid big buttons\" ढूँढें और चालू करें।</string>
+    <string name="agree_continue">सहमत हूँ, आगे बढ़ें</string>
+    <string name="no_thanks">नहीं, धन्यवाद</string>
 </resources>

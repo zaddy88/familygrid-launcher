@@ -31,6 +31,8 @@
     <string name="tile_camera">ক্যামেরা</string>
     <string name="tile_photos">ছবি</string>
     <string name="tile_quran">কুরআন</string>
+    <string name="tile_messages">বার্তা</string>
+    <string name="tile_browser">ইন্টারনেট</string>
     <string name="tile_fm_radio">এফএম রেডিও</string>
 
     <string name="title_welcome">FamilyGrid-এ স্বাগতম</string>
@@ -111,4 +113,29 @@
     <string name="label_back_button">পেছনে বোতাম</string>
     <string name="label_home_button">হোম বোতাম</string>
     <string name="label_apps_button">অ্যাপ বোতাম</string>
+
+    <!-- setup checklist, grid, settings entry -->
+    <string name="settings_app_label">FamilyGrid সেটিংস</string>
+    <string name="settings_gear_hint">সেটিংস খুলতে ⚙ চেপে ধরে রাখুন</string>
+    <string name="section_checklist">সেটআপ যাচাই</string>
+    <string name="check_home">FamilyGrid হোম স্ক্রিন</string>
+    <string name="check_navbar">বড় পেছনে / হোম বোতাম</string>
+    <string name="check_call">সরাসরি কল করার অনুমতি</string>
+    <string name="check_bt">ব্লুটুথ ডিভাইস দেখার অনুমতি</string>
+    <string name="tag_required">প্রয়োজনীয়</string>
+    <string name="tag_optional">ঐচ্ছিক</string>
+    <string name="status_done">✓ হয়েছে</string>
+    <string name="status_todo">সেট করা নেই</string>
+    <string name="action_fix">সেট করুন</string>
+    <string name="section_look">চেহারা</string>
+    <string name="grid_label">প্রতি সারিতে টাইল</string>
+    <string name="grid_2">2 · সবচেয়ে বড়</string>
+    <string name="grid_3">3 · বড়</string>
+    <string name="grid_4">4 · আরও বেশি</string>
+
+    <!-- Play policy: prominent disclosure before the accessibility service is switched on -->
+    <string name="navbar_disclosure_title">বড় বোতাম সম্পর্কে</string>
+    <string name="navbar_disclosure_msg">FamilyGrid, Android-এর Accessibility সেবা শুধু বড় পেছনে, হোম ও অ্যাপ বোতাম দেখাতে এবং সেগুলো চাপলে পেছনে বা হোমে যেতে ব্যবহার করে।\n\nএটি আপনার স্ক্রিনের কিছুই পড়ে না। কোনো তথ্য সংগ্রহ, সংরক্ষণ বা শেয়ার করা হয় না।\n\nপরের স্ক্রিনে \"FamilyGrid big buttons\" খুঁজে চালু করুন।</string>
+    <string name="agree_continue">রাজি, এগিয়ে যান</string>
+    <string name="no_thanks">না, ধন্যবাদ</string>
 </resources>

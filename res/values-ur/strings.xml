@@ -31,6 +31,8 @@
     <string name="tile_camera">کیمرا</string>
     <string name="tile_photos">تصاویر</string>
     <string name="tile_quran">قرآن</string>
+    <string name="tile_messages">پیغامات</string>
+    <string name="tile_browser">انٹرنیٹ</string>
     <string name="tile_fm_radio">ایف ایم ریڈیو</string>
 
     <string name="title_welcome">فیملی گرڈ میں خوش آمدید</string>
@@ -111,4 +113,29 @@
     <string name="label_back_button">واپس کا بٹن</string>
     <string name="label_home_button">ہوم کا بٹن</string>
     <string name="label_apps_button">ایپس کا بٹن</string>
+
+    <!-- setup checklist, grid, settings entry -->
+    <string name="settings_app_label">FamilyGrid سیٹنگز</string>
+    <string name="settings_gear_hint">سیٹنگز کھولنے کے لیے ⚙ کو دبا کر رکھیں</string>
+    <string name="section_checklist">سیٹ اپ کی جانچ</string>
+    <string name="check_home">فیملی گرڈ ہوم اسکرین ہے</string>
+    <string name="check_navbar">بڑے واپس / ہوم بٹن</string>
+    <string name="check_call">براہ راست کال کی اجازت</string>
+    <string name="check_bt">بلوٹوتھ آلات دیکھنے کی اجازت</string>
+    <string name="tag_required">ضروری</string>
+    <string name="tag_optional">اختیاری</string>
+    <string name="status_done">✓ مکمل</string>
+    <string name="status_todo">سیٹ نہیں</string>
+    <string name="action_fix">سیٹ کریں</string>
+    <string name="section_look">شکل و صورت</string>
+    <string name="grid_label">ایک قطار میں ٹائلز</string>
+    <string name="grid_2">2 · سب سے بڑی</string>
+    <string name="grid_3">3 · بڑی</string>
+    <string name="grid_4">4 · زیادہ</string>
+
+    <!-- Play policy: prominent disclosure before the accessibility service is switched on -->
+    <string name="navbar_disclosure_title">بڑے بٹنوں کے بارے میں</string>
+    <string name="navbar_disclosure_msg">فیملی گرڈ اینڈرائیڈ کی ایکسیسبلٹی سروس صرف بڑے واپس، ہوم اور ایپس بٹن دکھانے، اور ان کو دبانے پر واپس یا ہوم جانے کے لیے استعمال کرتا ہے۔\n\nیہ آپ کی اسکرین پر موجود کچھ نہیں پڑھتا۔ کوئی معلومات جمع، محفوظ یا شیئر نہیں کی جاتی۔\n\nاگلی اسکرین پر \"FamilyGrid big buttons\" ڈھونڈیں اور آن کریں۔</string>
+    <string name="agree_continue">متفق ہوں اور آگے بڑھیں</string>
+    <string name="no_thanks">نہیں شکریہ</string>
 </resources>

@@ -18,7 +18,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -40,31 +41,21 @@ public class SettingsActivity extends Activity {
     private boolean setupMode;
     private List<HubConfig.Tile> tiles;
     private LinearLayout tileList;
-    private CheckBox directCallBox;
+    private CompoundButton directCallBox;
     private LinearLayout textSizeRow;
     private Button pinButton;
     private Button removePinButton;
     private Button navBarButton;
 
-    /** Opens the editor, asking for the PIN first if one is set. */
+    private static final int REQ_BT_PERMISSION = 3;
+    private static final String EXTRA_UNLOCKED = "unlocked";
+
+    private LinearLayout checklistBox;
+    private boolean uiBuilt;
+
+    /** Opens settings; the PIN (if any) is asked by SettingsActivity itself. */
     static void openWithPin(Activity from) {
-        if (!HubConfig.hasPin(from)) {
-            from.startActivity(new Intent(from, SettingsActivity.class));
-            return;
-        }
-        EditText pin = pinField(from);
-        new AlertDialog.Builder(from, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert)
-            .setTitle(R.string.enter_pin)
-            .setView(padded(from, pin))
-            .setPositiveButton(R.string.open, (d, w) -> {
-                if (HubConfig.checkPin(from, pin.getText().toString())) {
-                    from.startActivity(new Intent(from, SettingsActivity.class));
-                } else {
-                    Toast.makeText(from, R.string.wrong_pin, Toast.LENGTH_SHORT).show();
-                }
-            })
-            .setNegativeButton(R.string.cancel, null)
-            .show();
+        from.startActivity(new Intent(from, SettingsActivity.class));
     }
 
     @Override protected void attachBaseContext(Context base) {
@@ -73,6 +64,38 @@ public class SettingsActivity extends Activity {
 
     @Override protected void onCreate(Bundle b) {
         super.onCreate(b);
+        boolean unlocked = (b != null && b.getBoolean(EXTRA_UNLOCKED))
+            || getIntent().getBooleanExtra(EXTRA_UNLOCKED, false);
+        // Every way in (home screen, app-drawer icon) goes through the same PIN check.
+        if (HubConfig.hasPin(this) && !unlocked) askPinThenBuild();
+        else build();
+    }
+
+    @Override protected void onSaveInstanceState(Bundle out) {
+        super.onSaveInstanceState(out);
+        out.putBoolean(EXTRA_UNLOCKED, uiBuilt);
+    }
+
+    private void askPinThenBuild() {
+        EditText pin = pinField(this);
+        new AlertDialog.Builder(this)
+            .setTitle(R.string.enter_pin)
+            .setView(padded(this, pin))
+            .setCancelable(false)
+            .setPositiveButton(R.string.open, (d, w) -> {
+                if (HubConfig.checkPin(this, pin.getText().toString())) {
+                    getIntent().putExtra(EXTRA_UNLOCKED, true);
+                    build();
+                } else {
+                    Toast.makeText(this, R.string.wrong_pin, Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            })
+            .setNegativeButton(R.string.cancel, (d, w) -> finish())
+            .show();
+    }
+
+    private void build() {
         setupMode = getIntent().getBooleanExtra(EXTRA_SETUP, false) && !HubConfig.setupDone(this);
         if (setupMode) {
             tiles = new ArrayList<>();
@@ -84,18 +107,29 @@ public class SettingsActivity extends Activity {
             tiles = HubConfig.load(this);
         }
         setContentView(buildUi());
+        uiBuilt = true;
+        refreshStatus();
     }
 
     @Override protected void onResume() {
         super.onResume();
+        if (uiBuilt) refreshStatus(); // user may be back from Android settings
+    }
+
+    /** Updates everything that depends on system state (checklist, big-buttons button). */
+    private void refreshStatus() {
+        renderChecklist();
         if (navBarButton != null) {
             navBarButton.setText(NavBarService.isEnabled(this)
                 ? getString(R.string.navbar_is_on) : getString(R.string.navbar_turn_on));
         }
+        if (directCallBox != null) {
+            directCallBox.setChecked(HubConfig.directCall(this) && HubActions.canCallDirectly(this));
+        }
     }
 
     @Override public void onBackPressed() {
-        finishEditing();
+        if (uiBuilt) finishEditing(); else finish();
     }
 
     // ============================================================
@@ -103,98 +137,221 @@ public class SettingsActivity extends Activity {
     // ============================================================
 
     private View buildUi() {
+        LinearLayout root = new LinearLayout(this);
+        root.setOrientation(LinearLayout.VERTICAL);
+        root.setBackgroundColor(0xFFF4F6F9);
+
         ScrollView scroll = new ScrollView(this);
-        scroll.setBackgroundColor(0xFFF4F6F9);
         LinearLayout col = new LinearLayout(this);
         col.setOrientation(LinearLayout.VERTICAL);
-        col.setPadding(dp(18), dp(24), dp(18), dp(32));
+        col.setPadding(dp(18), dp(22), dp(18), dp(24));
         scroll.addView(col);
+        root.addView(scroll, new LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
 
         TextView title = text(getString(setupMode ? R.string.title_welcome : R.string.title_edit), 28, true);
         title.setTextColor(0xFF0B0F16);
         col.addView(title);
-        if (setupMode) {
-            col.addView(text(getString(R.string.setup_intro), 17, false));
-        }
+        if (setupMode) col.addView(text(getString(R.string.setup_intro), 17, false));
 
-        // ---- language (first, so setup can be done in the family's own language) ----
-        col.addView(section(languageHeading()));
-        col.addView(button("🌐  " + currentLanguageName(), v -> pickLanguage()));
+        // ---- 1. language: first, so everything after it is readable ----
+        LinearLayout lang = card(col, languageHeading());
+        lang.addView(button("🌐  " + currentLanguageName(), v -> pickLanguage()));
 
-        // ---- tiles ----
-        col.addView(section(getString(R.string.section_tiles)));
-        col.addView(text(getString(R.string.tiles_help), 15, false));
+        // ---- 2. setup checklist: what is required / optional and whether it is done ----
+        LinearLayout check = card(col, getString(R.string.section_checklist));
+        checklistBox = new LinearLayout(this);
+        checklistBox.setOrientation(LinearLayout.VERTICAL);
+        check.addView(checklistBox);
+
+        // ---- 3. tiles ----
+        LinearLayout tilesCard = card(col, getString(R.string.section_tiles));
+        tilesCard.addView(text(getString(R.string.tiles_help), 15, false));
         tileList = new LinearLayout(this);
         tileList.setOrientation(LinearLayout.VERTICAL);
-        col.addView(tileList);
+        tilesCard.addView(tileList);
         renderTiles();
-        col.addView(button(getString(R.string.add_app), v -> addApp()));
-        col.addView(button(getString(R.string.add_person), v -> addContact()));
+        tilesCard.addView(button(getString(R.string.add_app), v -> addApp()));
+        tilesCard.addView(button(getString(R.string.add_person), v -> addContact()));
 
-        // ---- text size ----
-        col.addView(section(getString(R.string.section_text_size)));
-        textSizeRow = new LinearLayout(this);
-        textSizeRow.setOrientation(LinearLayout.HORIZONTAL);
-        col.addView(textSizeRow);
+        // ---- 4. look: grid + text size ----
+        LinearLayout look = card(col, getString(R.string.section_look));
+        look.addView(label(getString(R.string.grid_label)));
+        LinearLayout gridRow = row();
+        look.addView(gridRow);
+        renderColumns(gridRow);
+        look.addView(label(getString(R.string.section_text_size)));
+        textSizeRow = row();
+        look.addView(textSizeRow);
         renderTextSize();
 
-        // ---- what to show ----
-        col.addView(section(getString(R.string.section_show)));
-        col.addView(toggle(getString(R.string.show_wifi), HubConfig.SHOW_WIFI));
-        col.addView(toggle(getString(R.string.show_battery), HubConfig.SHOW_BATTERY));
-        col.addView(toggle(getString(R.string.show_bluetooth), HubConfig.SHOW_BLUETOOTH));
-        col.addView(toggle(getString(R.string.show_all_apps), HubConfig.SHOW_ALL_APPS));
+        // ---- 5. what the home screen shows ----
+        LinearLayout show = card(col, getString(R.string.section_show));
+        show.addView(toggle(getString(R.string.show_wifi), HubConfig.SHOW_WIFI));
+        show.addView(toggle(getString(R.string.show_battery), HubConfig.SHOW_BATTERY));
+        show.addView(toggle(getString(R.string.show_bluetooth), HubConfig.SHOW_BLUETOOTH));
+        show.addView(toggle(getString(R.string.show_all_apps), HubConfig.SHOW_ALL_APPS));
 
-        // ---- big navigation buttons ----
-        col.addView(section(getString(R.string.section_navbar)));
-        col.addView(text(getString(R.string.navbar_help), 15, false));
-        navBarButton = button("", v -> HubActions.openAccessibilitySettings(this));
-        col.addView(navBarButton);
-        col.addView(button(getString(R.string.navbar_rename), v -> renameNavButtons()));
+        // ---- 6. big navigation buttons ----
+        LinearLayout nav = card(col, getString(R.string.section_navbar));
+        nav.addView(text(getString(R.string.navbar_help), 15, false));
+        navBarButton = button("", v -> openBigButtonsSettings());
+        nav.addView(navBarButton);
+        nav.addView(button(getString(R.string.navbar_rename), v -> renameNavButtons()));
 
-        // ---- calling ----
-        col.addView(section(getString(R.string.section_calling)));
+        // ---- calling: lives in the Tiles card, right under "Add a person (speed dial)" ----
         directCallBox = checkbox(getString(R.string.direct_call));
         directCallBox.setChecked(HubConfig.directCall(this) && HubActions.canCallDirectly(this));
         directCallBox.setOnCheckedChangeListener((v, on) -> {
+            if (!v.isPressed()) return; // ignore programmatic refreshes
             HubConfig.setDirectCall(this, on);
             if (on && !HubActions.canCallDirectly(this)) {
                 requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, REQ_CALL_PERMISSION);
             }
+            renderChecklist();
         });
-        col.addView(directCallBox);
+        tilesCard.addView(directCallBox);
 
-        // ---- lock ----
-        col.addView(section(getString(R.string.section_lock)));
-        col.addView(text(getString(R.string.lock_help), 15, false));
+        // ---- 8. lock ----
+        LinearLayout lock = card(col, getString(R.string.section_lock));
+        lock.addView(text(getString(R.string.lock_help), 15, false));
         pinButton = button("", v -> setPin());
         removePinButton = button(getString(R.string.remove_pin), v -> {
             HubConfig.setPin(this, null);
             renderPin();
             Toast.makeText(this, R.string.pin_removed, Toast.LENGTH_SHORT).show();
         });
-        col.addView(pinButton);
-        col.addView(removePinButton);
+        lock.addView(pinButton);
+        lock.addView(removePinButton);
         renderPin();
 
-        // ---- other ----
-        col.addView(section(getString(R.string.section_more)));
-        col.addView(button(getString(R.string.choose_home), v -> HubActions.openHomeSettings(this)));
-        col.addView(button(getString(R.string.phone_settings), v -> HubActions.openSettings(this)));
-        col.addView(button(getString(R.string.reset_tiles), v -> confirm(
+        // ---- 9. more ----
+        LinearLayout more = card(col, getString(R.string.section_more));
+        more.addView(button(getString(R.string.phone_settings), v -> HubActions.openSettings(this)));
+        more.addView(button(getString(R.string.reset_tiles), v -> confirm(
             getString(R.string.reset_confirm_title), getString(R.string.reset_confirm_msg), () -> {
                 HubConfig.resetToDefaults(this);
                 tiles = HubConfig.load(this);
                 renderTiles();
             })));
 
+        // Done stays fixed at the bottom so it is always one tap away.
+        LinearLayout bottom = new LinearLayout(this);
+        bottom.setPadding(dp(18), dp(10), dp(18), dp(12));
+        bottom.setBackgroundColor(Color.WHITE);
+        bottom.setElevation(dp(8));
         Button done = button(getString(setupMode ? R.string.finish_setup : R.string.done), v -> finishEditing());
         done.setBackground(rounded(0xFF0D47A1, 0));
         done.setTextColor(Color.WHITE);
-        LinearLayout.LayoutParams dl = (LinearLayout.LayoutParams) done.getLayoutParams();
-        dl.topMargin = dp(28);
-        col.addView(done);
-        return scroll;
+        done.setGravity(Gravity.CENTER);
+        done.setTypeface(Typeface.DEFAULT_BOLD);
+        LinearLayout.LayoutParams dl = new LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT, dp(60));
+        bottom.addView(done, dl);
+        root.addView(bottom);
+        return root;
+    }
+
+    /** A white rounded card with a heading; returns the column to add content to. */
+    private LinearLayout card(LinearLayout parent, String heading) {
+        LinearLayout c = new LinearLayout(this);
+        c.setOrientation(LinearLayout.VERTICAL);
+        c.setPadding(dp(16), dp(12), dp(16), dp(16));
+        c.setBackground(rounded(Color.WHITE, 0xFFE1E6EC));
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        lp.topMargin = dp(16);
+        parent.addView(c, lp);
+        TextView h = text(heading, 20, true);
+        h.setTextColor(0xFF0D47A1);
+        c.addView(h);
+        return c;
+    }
+
+    private TextView label(String s) {
+        TextView t = text(s, 16, true);
+        t.setPadding(0, dp(10), 0, 0);
+        return t;
+    }
+
+    private LinearLayout row() {
+        LinearLayout r = new LinearLayout(this);
+        r.setOrientation(LinearLayout.HORIZONTAL);
+        return r;
+    }
+
+    // ============================================================
+    // CHECKLIST
+    // ============================================================
+
+    private void renderChecklist() {
+        if (checklistBox == null) return;
+        checklistBox.removeAllViews();
+        checkRow(getString(R.string.check_home), true, HubActions.isDefaultHome(this),
+            () -> HubActions.openHomeSettings(this));
+        checkRow(getString(R.string.check_navbar), false, NavBarService.isEnabled(this),
+            () -> openBigButtonsSettings());
+        checkRow(getString(R.string.check_call), false, HubActions.canCallDirectly(this), () -> {
+            HubConfig.setDirectCall(this, true);
+            requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, REQ_CALL_PERMISSION);
+        });
+        if (HubConfig.isShown(this, HubConfig.SHOW_BLUETOOTH) && android.os.Build.VERSION.SDK_INT >= 31) {
+            checkRow(getString(R.string.check_bt), false, !HubActions.needsBluetoothPermission(this),
+                () -> requestPermissions(new String[]{"android.permission.BLUETOOTH_CONNECT"}, REQ_BT_PERMISSION));
+        }
+    }
+
+    private void checkRow(String title, boolean required, boolean ok, Runnable fix) {
+        LinearLayout r = new LinearLayout(this);
+        r.setOrientation(LinearLayout.HORIZONTAL);
+        r.setGravity(Gravity.CENTER_VERTICAL);
+        r.setPadding(0, dp(8), 0, dp(8));
+
+        LinearLayout info = new LinearLayout(this);
+        info.setOrientation(LinearLayout.VERTICAL);
+        TextView t = text(title, 17, true);
+        t.setTextColor(0xFF0B0F16);
+        info.addView(t);
+
+        LinearLayout tags = new LinearLayout(this);
+        tags.setOrientation(LinearLayout.HORIZONTAL);
+        tags.addView(pill(getString(required ? R.string.tag_required : R.string.tag_optional),
+            required ? 0xFFFFE0E0 : 0xFFE8EDF3, required ? 0xFFB71C1C : 0xFF4A5868));
+        TextView st = pill(getString(ok ? R.string.status_done : R.string.status_todo),
+            ok ? 0xFFDDF5E3 : 0xFFFFF1D6, ok ? 0xFF1B6E34 : 0xFF8A5A00);
+        LinearLayout.LayoutParams sl = new LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        sl.setMarginStart(dp(6));
+        tags.addView(st, sl);
+        info.addView(tags);
+        r.addView(info, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+
+        if (!ok) {
+            Button b = new Button(this);
+            b.setAllCaps(false);
+            b.setText(R.string.action_fix);
+            b.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+            b.setTextColor(Color.WHITE);
+            b.setBackground(rounded(required ? 0xFFC62828 : 0xFF0D47A1, 0));
+            b.setPadding(dp(16), 0, dp(16), 0);
+            b.setOnClickListener(v -> fix.run());
+            r.addView(b, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, dp(48)));
+        }
+        checklistBox.addView(r);
+    }
+
+    private TextView pill(String s, int bg, int fg) {
+        TextView p = new TextView(this);
+        p.setText(s);
+        p.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+        p.setTypeface(Typeface.DEFAULT_BOLD);
+        p.setTextColor(fg);
+        p.setPadding(dp(10), dp(3), dp(10), dp(3));
+        GradientDrawable d = new GradientDrawable();
+        d.setColor(bg);
+        d.setCornerRadius(dp(20));
+        p.setBackground(d);
+        return p;
     }
 
     private void renderTiles() {
@@ -217,7 +374,11 @@ public class SettingsActivity extends Activity {
             name.setTextColor(Color.WHITE);
             name.setGravity(Gravity.CENTER_VERTICAL);
             name.setPadding(dp(14), 0, dp(8), 0);
-            name.setSingleLine(true);
+            name.setMaxLines(1);
+            name.setEllipsize(android.text.TextUtils.TruncateAt.END);
+            if (android.os.Build.VERSION.SDK_INT >= 26) {
+                name.setAutoSizeTextTypeUniformWithConfiguration(11, 18, 1, TypedValue.COMPLEX_UNIT_SP);
+            }
             GradientDrawable g = new GradientDrawable(GradientDrawable.Orientation.TL_BR,
                 new int[]{t.colorStart, t.colorEnd});
             g.setCornerRadius(dp(14));
@@ -237,7 +398,7 @@ public class SettingsActivity extends Activity {
     }
 
     private String subtitle(HubConfig.Tile t) {
-        if (HubConfig.TYPE_CONTACT.equals(t.type)) return "  ·  " + t.phone;
+        if (HubConfig.TYPE_CONTACT.equals(t.type)) return "  ·  📞 " + t.phone;
         if (HubConfig.TYPE_APP.equals(t.type) && !HubActions.isInstalled(this, t.pkg)) {
             return "  ·  " + getString(R.string.tile_not_installed);
         }
@@ -245,25 +406,53 @@ public class SettingsActivity extends Activity {
     }
 
     private void renderTextSize() {
-        textSizeRow.removeAllViews();
-        int current = HubConfig.textScaleIndex(this);
-        for (int i = 0; i < HubConfig.TEXT_SCALES.length; i++) {
+        String[] names = new String[HubConfig.TEXT_SCALES.length];
+        for (int i = 0; i < names.length; i++) names[i] = getString(HubConfig.TEXT_SCALE_NAMES[i]);
+        segmented(textSizeRow, names, HubConfig.textScaleIndex(this), HubConfig.TEXT_SCALES, idx -> {
+            HubConfig.setTextScaleIndex(this, idx);
+            HubConfig.touch(this);
+            renderTextSize();
+        });
+    }
+
+    private void renderColumns(LinearLayout rowView) {
+        String[] names = new String[HubConfig.COLUMN_CHOICES.length];
+        int sel = 0;
+        for (int i = 0; i < names.length; i++) {
+            names[i] = getString(HubConfig.COLUMN_NAMES[i]);
+            if (HubConfig.COLUMN_CHOICES[i] == HubConfig.columns(this)) sel = i;
+        }
+        segmented(rowView, names, sel, null, idx -> {
+            HubConfig.setColumns(this, HubConfig.COLUMN_CHOICES[idx]);
+            HubConfig.touch(this);
+            renderColumns(rowView);
+        });
+    }
+
+    /** Row of big equal buttons where one is selected. scales (optional) previews text size. */
+    private void segmented(LinearLayout rowView, String[] names, int selected, float[] scales,
+                           java.util.function.IntConsumer onPick) {
+        rowView.removeAllViews();
+        for (int i = 0; i < names.length; i++) {
             final int idx = i;
             Button btn = new Button(this);
             btn.setAllCaps(false);
-            btn.setText(HubConfig.TEXT_SCALE_NAMES[i]);
-            btn.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15 * HubConfig.TEXT_SCALES[i]);
-            boolean sel = i == current;
+            btn.setText(names[i]);
+            // preview the text size, but keep it inside the button
+            int size = Math.round(15 * Math.min(scales != null ? scales[i] : 1f, 1.25f));
+            btn.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
+            btn.setMaxLines(1);
+            if (android.os.Build.VERSION.SDK_INT >= 26) {
+                btn.setAutoSizeTextTypeUniformWithConfiguration(10, size, 1, TypedValue.COMPLEX_UNIT_SP);
+            }
+            boolean sel = i == selected;
             btn.setTextColor(sel ? Color.WHITE : 0xFF0B0F16);
             btn.setBackground(rounded(sel ? 0xFF0D47A1 : Color.WHITE, sel ? 0 : 0xFFCBD3DD));
-            btn.setOnClickListener(v -> {
-                HubConfig.setTextScaleIndex(this, idx);
-                HubConfig.touch(this);
-                renderTextSize();
-            });
+            btn.setPadding(dp(4), 0, dp(4), 0);
+            btn.setOnClickListener(v -> onPick.accept(idx));
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, dp(64), 1f);
             lp.setMargins(dp(3), dp(6), dp(3), 0);
-            textSizeRow.addView(btn, lp);
+            rowView.addView(btn, lp);
         }
     }
 
@@ -409,6 +598,7 @@ public class SettingsActivity extends Activity {
     }
 
     @Override public void onRequestPermissionsResult(int req, String[] perms, int[] results) {
+        refreshStatus();
         if (req != REQ_CALL_PERMISSION) return;
         boolean granted = results.length > 0 && results[0] == PackageManager.PERMISSION_GRANTED;
         if (!granted) {
@@ -417,6 +607,24 @@ public class SettingsActivity extends Activity {
             Toast.makeText(this, R.string.keypad_fallback,
                 Toast.LENGTH_LONG).show();
         }
+    }
+
+    /**
+     * Google Play requires a clear in-app explanation and an explicit "agree" before
+     * sending people to switch on an accessibility service that is not an accessibility tool.
+     * Switching it off needs no disclosure.
+     */
+    private void openBigButtonsSettings() {
+        if (NavBarService.isEnabled(this)) {
+            HubActions.openAccessibilitySettings(this);
+            return;
+        }
+        new AlertDialog.Builder(this)
+            .setTitle(R.string.navbar_disclosure_title)
+            .setMessage(R.string.navbar_disclosure_msg)
+            .setPositiveButton(R.string.agree_continue, (d, w) -> HubActions.openAccessibilitySettings(this))
+            .setNegativeButton(R.string.no_thanks, null)
+            .show();
     }
 
     private void renameNavButtons() {
@@ -581,8 +789,8 @@ public class SettingsActivity extends Activity {
         return b;
     }
 
-    private CheckBox checkbox(String label) {
-        CheckBox c = new CheckBox(this);
+    private Switch checkbox(String label) {
+        Switch c = new Switch(this);
         c.setText(label);
         c.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
         c.setTextColor(0xFF0B0F16);
@@ -590,12 +798,13 @@ public class SettingsActivity extends Activity {
         return c;
     }
 
-    private CheckBox toggle(String label, String key) {
-        CheckBox c = checkbox(label);
+    private Switch toggle(String label, String key) {
+        Switch c = checkbox(label);
         c.setChecked(HubConfig.isShown(this, key));
         c.setOnCheckedChangeListener((v, on) -> {
             HubConfig.setShown(this, key, on);
             HubConfig.touch(this);
+            renderChecklist();
         });
         return c;
     }

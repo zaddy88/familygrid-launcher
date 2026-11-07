@@ -31,6 +31,8 @@
     <string name="tile_camera">الكاميرا</string>
     <string name="tile_photos">الصور</string>
     <string name="tile_quran">القرآن</string>
+    <string name="tile_messages">الرسائل</string>
+    <string name="tile_browser">الإنترنت</string>
     <string name="tile_fm_radio">راديو FM</string>
 
     <string name="title_welcome">مرحباً بك في FamilyGrid</string>
@@ -111,4 +113,29 @@
     <string name="label_back_button">زر الرجوع</string>
     <string name="label_home_button">زر الرئيسية</string>
     <string name="label_apps_button">زر التطبيقات</string>
+
+    <!-- setup checklist, grid, settings entry -->
+    <string name="settings_app_label">إعدادات FamilyGrid</string>
+    <string name="settings_gear_hint">اضغط مطولاً على ⚙ لفتح الإعدادات</string>
+    <string name="section_checklist">فحص الإعداد</string>
+    <string name="check_home">FamilyGrid هي الشاشة الرئيسية</string>
+    <string name="check_navbar">أزرار رجوع / الرئيسية كبيرة</string>
+    <string name="check_call">مسموح بالاتصال المباشر</string>
+    <string name="check_bt">مسموح برؤية أجهزة البلوتوث</string>
+    <string name="tag_required">مطلوب</string>
+    <string name="tag_optional">اختياري</string>
+    <string name="status_done">✓ تم</string>
+    <string name="status_todo">غير مُعدّ</string>
+    <string name="action_fix">إعداد</string>
+    <string name="section_look">المظهر</string>
+    <string name="grid_label">المربعات في كل صف</string>
+    <string name="grid_2">2 · الأكبر</string>
+    <string name="grid_3">3 · كبير</string>
+    <string name="grid_4">4 · أكثر</string>
+
+    <!-- Play policy: prominent disclosure before the accessibility service is switched on -->
+    <string name="navbar_disclosure_title">حول الأزرار الكبيرة</string>
+    <string name="navbar_disclosure_msg">يستخدم FamilyGrid خدمة إمكانية الوصول في أندرويد فقط لرسم أزرار رجوع والرئيسية والتطبيقات الكبيرة، وللرجوع أو الذهاب إلى الرئيسية عند الضغط عليها.\n\nلا يقرأ ما على شاشتك. لا يتم جمع أي معلومات أو حفظها أو مشاركتها.\n\nفي الشاشة التالية، ابحث عن \"FamilyGrid big buttons\" وفعّلها.</string>
+    <string name="agree_continue">أوافق وأتابع</string>
+    <string name="no_thanks">لا، شكراً</string>
 </resources>

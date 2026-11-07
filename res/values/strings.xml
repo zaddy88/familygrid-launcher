@@ -35,6 +35,8 @@
     <string name="tile_camera">Camera</string>
     <string name="tile_photos">Photos</string>
     <string name="tile_quran">Quran</string>
+    <string name="tile_messages">Messages</string>
+    <string name="tile_browser">Internet</string>
     <string name="tile_fm_radio">FM Radio</string>
 
     <!-- editor / setup -->
@@ -116,4 +118,29 @@
     <string name="label_back_button">Back button</string>
     <string name="label_home_button">Home button</string>
     <string name="label_apps_button">Apps button</string>
+
+    <!-- setup checklist, grid, settings entry -->
+    <string name="settings_app_label">FamilyGrid Settings</string>
+    <string name="settings_gear_hint">Hold the ⚙ to open settings</string>
+    <string name="section_checklist">Setup check</string>
+    <string name="check_home">FamilyGrid is the home screen</string>
+    <string name="check_navbar">Big Back / Home buttons</string>
+    <string name="check_call">Allowed to call directly</string>
+    <string name="check_bt">Allowed to see Bluetooth devices</string>
+    <string name="tag_required">Required</string>
+    <string name="tag_optional">Optional</string>
+    <string name="status_done">✓ Done</string>
+    <string name="status_todo">Not set up</string>
+    <string name="action_fix">Set up</string>
+    <string name="section_look">Look</string>
+    <string name="grid_label">Tiles per row</string>
+    <string name="grid_2">2 · Biggest</string>
+    <string name="grid_3">3 · Big</string>
+    <string name="grid_4">4 · More</string>
+
+    <!-- Play policy: prominent disclosure before the accessibility service is switched on -->
+    <string name="navbar_disclosure_title">About the big buttons</string>
+    <string name="navbar_disclosure_msg">FamilyGrid uses Android\'s Accessibility service only to draw the big Back, Home and Apps buttons, and to go Back or Home when you tap them.\n\nIt does not read what is on your screen. Nothing is collected, stored or shared.\n\nOn the next screen, find \"FamilyGrid big buttons\" and switch it on.</string>
+    <string name="agree_continue">Agree and continue</string>
+    <string name="no_thanks">No thanks</string>
 </resources>

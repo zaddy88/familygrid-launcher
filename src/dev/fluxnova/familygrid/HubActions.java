@@ -104,6 +104,54 @@ final class HubActions {
         if (!start(c, i)) openSettings(c);
     }
 
+    // Generic jobs a default tile can stand for, resolved to whatever app this phone uses.
+    static final String ROLE_SMS = "sms";
+    static final String ROLE_CAMERA = "camera";
+    static final String ROLE_GALLERY = "gallery";
+    static final String ROLE_BROWSER = "browser";
+
+    /** The package that handles a role on this phone, or null if there is no clear answer. */
+    static String appFor(Context c, String role) {
+        String pkg = null;
+        try {
+            switch (role) {
+                case ROLE_SMS:
+                    pkg = android.provider.Telephony.Sms.getDefaultSmsPackage(c);
+                    break;
+                case ROLE_CAMERA:
+                    pkg = handler(c, new Intent(android.provider.MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA));
+                    break;
+                case ROLE_GALLERY:
+                    pkg = isInstalled(c, "com.google.android.apps.photos") ? "com.google.android.apps.photos"
+                        : handler(c, new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_APP_GALLERY));
+                    break;
+                case ROLE_BROWSER:
+                    pkg = handler(c, new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_APP_BROWSER));
+                    if (pkg == null) pkg = handler(c, new Intent(Intent.ACTION_VIEW, Uri.parse("https://example.com")));
+                    break;
+                default:
+                    break;
+            }
+        } catch (RuntimeException ignored) {}
+        return isInstalled(c, pkg) ? pkg : null;
+    }
+
+    /** Default handler's package; null when Android would ask the user to choose. */
+    private static String handler(Context c, Intent i) {
+        ResolveInfo ri = c.getPackageManager().resolveActivity(i, PackageManager.MATCH_DEFAULT_ONLY);
+        if (ri == null || ri.activityInfo == null) return null;
+        String pkg = ri.activityInfo.packageName;
+        return "android".equals(pkg) ? null : pkg; // "android" = the "choose an app" screen
+    }
+
+    /** true when pressing Home opens FamilyGrid (it is the chosen default home app). */
+    static boolean isDefaultHome(Context c) {
+        Intent home = new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME);
+        ResolveInfo ri = c.getPackageManager().resolveActivity(home, PackageManager.MATCH_DEFAULT_ONLY);
+        return ri != null && ri.activityInfo != null
+            && c.getPackageName().equals(ri.activityInfo.packageName);
+    }
+
     static void openAccessibilitySettings(Context c) {
         Intent i = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (!start(c, i)) openSettings(c);
