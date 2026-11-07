@@ -176,6 +176,17 @@ final class HubActions {
         if (!start(c, i)) openSettings(c);
     }
 
+    /** USB debugging gives a computer far more control than an app; it should be off after setup. */
+    static boolean isUsbDebuggingOn(Context c) {
+        return Settings.Global.getInt(c.getContentResolver(), Settings.Global.ADB_ENABLED, 0) != 0;
+    }
+
+    static void openDeveloperOptions(Context c) {
+        Intent i = new Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS)
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (!start(c, i)) openSettings(c);
+    }
+
     static void openNotificationAccess(Context c) {
         Intent i = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")
             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

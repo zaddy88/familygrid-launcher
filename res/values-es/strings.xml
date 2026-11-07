@@ -156,4 +156,9 @@
     <string name="guide_call">Android preguntará si FamilyGrid puede hacer llamadas. Toca \"Permitir\".\n\nSi se abren los ajustes de la app, toca Permisos › Teléfono › Permitir.</string>
     <string name="guide_bt">Android preguntará por \"Dispositivos cercanos\". Toca \"Permitir\".\n\nSi se abren los ajustes de la app, toca Permisos › Dispositivos cercanos › Permitir.</string>
     <string name="continue_btn">Continuar</string>
+
+    <!-- handover safety: USB debugging -->
+    <string name="check_adb">Depuración USB desactivada</string>
+    <string name="tag_recommended">Recomendado</string>
+    <string name="guide_adb">La depuración USB permite que un ordenador conectado controle este teléfono. Desactívala al terminar la configuración.\n\nEn la siguiente pantalla:\n1. Toca \"Revocar autorizaciones de depuración USB\" › Aceptar\n2. Desactiva \"Depuración USB\"\n3. Desactiva \"Opciones para desarrolladores\" arriba</string>
 </resources>

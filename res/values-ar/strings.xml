@@ -156,4 +156,9 @@
     <string name="guide_call">سيسأل أندرويد إن كان مسموحاً لـ FamilyGrid بإجراء المكالمات. اضغط \"سماح\".\n\nإذا فُتحت إعدادات التطبيق بدلاً من ذلك، اضغط الأذونات ‹ الهاتف ‹ سماح.</string>
     <string name="guide_bt">سيسأل أندرويد عن \"الأجهزة المجاورة\". اضغط \"سماح\".\n\nإذا فُتحت إعدادات التطبيق بدلاً من ذلك، اضغط الأذونات ‹ الأجهزة المجاورة ‹ سماح.</string>
     <string name="continue_btn">متابعة</string>
+
+    <!-- handover safety: USB debugging -->
+    <string name="check_adb">تصحيح USB مُعطّل</string>
+    <string name="tag_recommended">مُستحسن</string>
+    <string name="guide_adb">يسمح تصحيح USB لأي كمبيوتر متصل بالتحكم في هذا الهاتف. أوقفه بعد انتهاء الإعداد.\n\nفي الشاشة التالية:\n1. اضغط \"إبطال تفويضات تصحيح USB\" ‹ موافق\n2. أوقف \"تصحيح USB\"\n3. أوقف \"خيارات المطور\" في الأعلى</string>
 </resources>

@@ -66,8 +66,20 @@ Using phone-inventory.txt, sort every package into these groups and show me a ta
   than Play, "cleaners/boosters", duplicate browsers, preinstalled promo apps.
 - ASK ME: anything you are not sure about.
 
+Cross-check before you suggest anything. Do NOT rely on package names alone:
+- Download the community-maintained package list from Universal Android Debloater Next Generation
+  (GitHub: Universal-Debloater-Alliance/universal-android-debloater-next-generation, file uad_lists.json).
+- For every package, add a column with its UAD-ng safety rating (Recommended / Advanced / Expert /
+  Unsafe) and description, or "not listed".
+- Only suggest REMOVE for packages rated "Recommended" (or "Advanced" with a clear reason).
+  Anything "Expert", "Unsafe" or "not listed" goes to ASK ME, even if the name looks like junk.
+
 Do not remove anything. Wait for me to approve the REMOVE list.
 ```
+
+> **Why the cross-check matters:** a name like `com.transsion.xyz` can be an ad service *or* part of the
+> phone's dialer. The UAD-ng list is reviewed by its community per manufacturer, and you approve every package yourself,
+> so the agent's guess is never the only check.
 
 ### Prompt 3: Disable first (trial run, reversible)
 
@@ -89,6 +101,9 @@ and report any errors. Then tell me to use the phone normally for a day before c
 The phone has worked fine with the junk disabled. Now create uninstall-junk with
 `adb shell pm uninstall --user 0 <package>` for the same packages, keep restore-all up to date,
 run it, and then list the remaining third-party packages so I can check the result.
+Also save the final list of removed packages to removed-packages.txt (one per line) and record the
+phone's build fingerprint (`adb shell getprop ro.build.fingerprint`) in it, so we can tell
+after a system update whether anything came back.
 ```
 
 ### Prompt 5: Stop pop-ups that appear over other apps
@@ -137,6 +152,50 @@ Verify the phone is healthy:
 - no crashes: `adb logcat -d -b crash`.
 Report anything unusual. Also confirm restore-all is saved somewhere safe.
 ```
+
+### Prompt 9: After a system update (re-check, don't guess)
+
+System updates can bring removed apps back or switch them on again. Keep removed-packages.txt and
+restore-all with your notes, then after any update:
+
+```text
+The phone just had a system update. Compare the current build fingerprint with the one in
+removed-packages.txt. Then, for every package in removed-packages.txt, check whether it is installed
+for user 0 again (`adb shell pm list packages <package>`) or enabled.
+Show me ONLY the ones that came back, re-check each against the UAD-ng list (the update may have
+changed what a package does), and wait for my approval before removing them again with the same
+reversible commands. Also confirm FamilyGrid is still the default home app.
+```
+
+### Prompt 10: Hand the phone back safely (lock down ADB)
+
+ADB gives your computer far more control over the phone than any normal app has. When everything
+works, remove that access:
+
+```text
+We are finished. Help me hand the phone back safely:
+1. Confirm restore-all and removed-packages.txt are saved on this computer (not on the phone).
+2. Run `adb kill-server` on this computer.
+3. Then tell me, step by step, to do this ON THE PHONE (you cannot do it over ADB):
+   Settings › System › Developer options › "Revoke USB debugging authorisations",
+   then switch "USB debugging" off, then switch "Developer options" off at the top.
+4. Finally run `adb devices` and confirm the phone is no longer listed.
+```
+
+FamilyGrid's **Setup check** also shows **"USB debugging is off" (Recommended)** and keeps nagging
+until it is, so a phone isn't handed over with ADB still open.
+
+---
+
+## ✅ Handover checklist
+
+- [ ] Phone works: calls, WhatsApp, camera, messages, Play Store
+- [ ] FamilyGrid is the home app; Setup check is all ✓
+- [ ] `restore-all` and `removed-packages.txt` saved on **your** computer
+- [ ] **Revoke USB debugging authorisations** (Developer options)
+- [ ] **USB debugging off** and **Developer options off**
+- [ ] A FamilyGrid **PIN** set, so tiles aren't changed by accident
+- [ ] Re-check after the next system update (Prompt 9)
 
 ---
 

@@ -156,4 +156,9 @@
     <string name="guide_call">Android জিজ্ঞেস করবে FamilyGrid ফোন কল করতে পারবে কি না। \"অনুমতি দিন\" (Allow) চাপুন।\n\nঅ্যাপের সেটিংস খুললে Permissions › Phone › Allow চাপুন।</string>
     <string name="guide_bt">Android \"কাছাকাছি ডিভাইস\" (Nearby devices) সম্পর্কে জিজ্ঞেস করবে। \"অনুমতি দিন\" চাপুন।\n\nঅ্যাপের সেটিংস খুললে Permissions › Nearby devices › Allow চাপুন।</string>
     <string name="continue_btn">চালিয়ে যান</string>
+
+    <!-- handover safety: USB debugging -->
+    <string name="check_adb">USB ডিবাগিং বন্ধ</string>
+    <string name="tag_recommended">প্রস্তাবিত</string>
+    <string name="guide_adb">USB ডিবাগিং থাকলে সংযুক্ত কম্পিউটার এই ফোন নিয়ন্ত্রণ করতে পারে। সেটআপ শেষ হলে এটি বন্ধ করুন।\n\nপরের স্ক্রিনে:\n1. \"Revoke USB debugging authorisations\" › OK চাপুন\n2. \"USB debugging\" বন্ধ করুন\n3. উপরে \"Developer options\" বন্ধ করুন</string>
 </resources>

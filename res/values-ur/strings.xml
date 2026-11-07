@@ -156,4 +156,9 @@
     <string name="guide_call">اینڈرائیڈ پوچھے گا کہ کیا فیملی گرڈ فون کال کر سکتا ہے۔ \"اجازت دیں\" (Allow) دبائیں۔\n\nاگر اس کے بجائے ایپ کی سیٹنگز کھلیں تو Permissions ‹ Phone ‹ Allow دبائیں۔</string>
     <string name="guide_bt">اینڈرائیڈ \"قریبی آلات\" (Nearby devices) کے بارے میں پوچھے گا۔ \"اجازت دیں\" دبائیں۔\n\nاگر ایپ کی سیٹنگز کھلیں تو Permissions ‹ Nearby devices ‹ Allow دبائیں۔</string>
     <string name="continue_btn">جاری رکھیں</string>
+
+    <!-- handover safety: USB debugging -->
+    <string name="check_adb">USB ڈیبگنگ بند ہے</string>
+    <string name="tag_recommended">تجویز کردہ</string>
+    <string name="guide_adb">USB ڈیبگنگ سے جڑا ہوا کمپیوٹر اس فون کو کنٹرول کر سکتا ہے۔ سیٹ اپ مکمل ہونے کے بعد اسے بند کر دیں۔\n\nاگلی اسکرین پر:\n1. \"Revoke USB debugging authorisations\" دبائیں ‹ OK\n2. \"USB debugging\" بند کریں\n3. اوپر سے \"Developer options\" بند کریں</string>
 </resources>

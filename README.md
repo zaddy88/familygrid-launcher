@@ -13,7 +13,7 @@
 <p align="center">
   <a href="https://github.com/zaddy88/familygrid-launcher/releases/latest/download/FamilyGrid.apk"><img alt="Download APK" src="https://img.shields.io/badge/Download-APK-2ea44f?style=for-the-badge&logo=android&logoColor=white"></a>
   <img alt="Android 7.0+" src="https://img.shields.io/badge/Android-7.0%2B-3DDC84?style=for-the-badge&logo=android&logoColor=white">
-  <img alt="Version 0.4.0" src="https://img.shields.io/badge/version-0.4.0-0D47A1?style=for-the-badge">
+  <img alt="Version 0.4.1" src="https://img.shields.io/badge/version-0.4.1-0D47A1?style=for-the-badge">
   <img alt="License Apache 2.0" src="https://img.shields.io/badge/license-Apache%202.0-blue?style=for-the-badge">
   <a href="https://whop.com/checkout/plan_Xy4vheVKTXtxv"><img alt="Buy me a coffee" src="https://img.shields.io/badge/Buy%20me%20a%20coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black"></a>
 </p>
@@ -142,8 +142,36 @@ coding agent (Claude Code, OpenAI Codex, Cursor, Gemini CLI, Warp…) through it
 7. Install FamilyGrid
 8. Check that everything still works
 
-No root needed, and every step comes with an undo script. *I did mine with **Warp + GLM**: about 50 junk apps
+No root needed, and every step comes with an undo script. Two more prompts cover **re-checking after a
+system update** and **handing the phone back safely** (revoke ADB, switch off USB debugging). *I did mine with **Warp + GLM**: about 50 junk apps
 gone from a TECNO POVA in one session.*
+
+### 🛡️ Safety: how packages are chosen, and how you hand the phone back
+- **Not by name guessing.** The agent cross-checks every package against the community-maintained
+  [Universal Android Debloater (UAD-ng)](https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation)
+  list and its safety ratings. Only "Recommended" ones are suggested; anything unknown goes to
+  *ask me*, and **you approve every package** before anything changes.
+- **Always reversible.** It disables first, removes for the current user only, and keeps a `restore-all` script plus a
+  `removed-packages.txt` list.
+- **After a system update**, a prompt compares against that list and shows only what came back.
+- **Lock it down at handover.** ADB gives a computer far more control than any app. The handover prompt
+  revokes the computer's authorisation and switches off USB debugging and Developer options. FamilyGrid's
+  Setup check keeps showing **"USB debugging is off" (Recommended)** until it's done.
+
+---
+
+## ❓ FAQ
+
+**Will a system update undo the clean-up?** It can: updates sometimes reinstall or re-enable removed
+apps. Your FamilyGrid tiles and settings are kept. Run *Prompt 9* from the guide after an update to see
+exactly what came back.
+
+**What if I add more tiles than fit?** The home screen scrolls; tiles keep their size.
+
+**Can FamilyGrid block pop-up ads by itself?** It hides junk *notifications* (Quiet mode). Pop-ups drawn
+*over* other apps need the ADB step in the guide, because no normal app can block them.
+
+**Is it safe to leave USB debugging on?** No. Switch it off when you're done. The Setup check reminds you.
 
 ---
 

@@ -161,4 +161,9 @@
     <string name="guide_call">Android will ask if FamilyGrid may make phone calls. Tap \"Allow\".\n\nIf the app\'s settings open instead, tap Permissions › Phone › Allow.</string>
     <string name="guide_bt">Android will ask about \"Nearby devices\". Tap \"Allow\".\n\nIf the app\'s settings open instead, tap Permissions › Nearby devices › Allow.</string>
     <string name="continue_btn">Continue</string>
+
+    <!-- handover safety: USB debugging -->
+    <string name="check_adb">USB debugging is off</string>
+    <string name="tag_recommended">Recommended</string>
+    <string name="guide_adb">USB debugging lets a connected computer control this phone. Turn it off once setup is finished.\n\nOn the next screen:\n1. Tap \"Revoke USB debugging authorisations\" › OK\n2. Switch \"USB debugging\" off\n3. Switch \"Developer options\" off at the top</string>
 </resources>

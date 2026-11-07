@@ -313,6 +313,8 @@ public class SettingsActivity extends Activity {
                 HubConfig.setDirectCall(this, true);
                 requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, REQ_CALL_PERMISSION);
             }));
+        checkRow(getString(R.string.check_adb), LEVEL_RECOMMENDED, !HubActions.isUsbDebuggingOn(this),
+            () -> guide(R.string.guide_adb, () -> HubActions.openDeveloperOptions(this)));
         if (HubConfig.quietMode(this)) {
             checkRow(getString(R.string.check_quiet), false, QuietService.hasAccess(this), this::openQuietAccess);
         }
@@ -323,7 +325,14 @@ public class SettingsActivity extends Activity {
         }
     }
 
+    private static final int LEVEL_OPTIONAL = 0, LEVEL_REQUIRED = 1, LEVEL_RECOMMENDED = 2;
+
     private void checkRow(String title, boolean required, boolean ok, Runnable fix) {
+        checkRow(title, required ? LEVEL_REQUIRED : LEVEL_OPTIONAL, ok, fix);
+    }
+
+    private void checkRow(String title, int level, boolean ok, Runnable fix) {
+        boolean required = level == LEVEL_REQUIRED;
         LinearLayout r = new LinearLayout(this);
         r.setOrientation(LinearLayout.HORIZONTAL);
         r.setGravity(Gravity.CENTER_VERTICAL);
@@ -337,8 +346,12 @@ public class SettingsActivity extends Activity {
 
         LinearLayout tags = new LinearLayout(this);
         tags.setOrientation(LinearLayout.HORIZONTAL);
-        tags.addView(pill(getString(required ? R.string.tag_required : R.string.tag_optional),
-            required ? 0xFFFFE0E0 : 0xFFE8EDF3, required ? 0xFFB71C1C : 0xFF4A5868));
+        if (level == LEVEL_RECOMMENDED) {
+            tags.addView(pill(getString(R.string.tag_recommended), 0xFFFFF1D6, 0xFF8A5A00));
+        } else {
+            tags.addView(pill(getString(required ? R.string.tag_required : R.string.tag_optional),
+                required ? 0xFFFFE0E0 : 0xFFE8EDF3, required ? 0xFFB71C1C : 0xFF4A5868));
+        }
         TextView st = pill(getString(ok ? R.string.status_done : R.string.status_todo),
             ok ? 0xFFDDF5E3 : 0xFFFFF1D6, ok ? 0xFF1B6E34 : 0xFF8A5A00);
         LinearLayout.LayoutParams sl = new LinearLayout.LayoutParams(
@@ -365,10 +378,11 @@ public class SettingsActivity extends Activity {
     private TextView pill(String s, int bg, int fg) {
         TextView p = new TextView(this);
         p.setText(s);
-        p.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+        p.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
         p.setTypeface(Typeface.DEFAULT_BOLD);
         p.setTextColor(fg);
-        p.setPadding(dp(10), dp(3), dp(10), dp(3));
+        p.setSingleLine(true);
+        p.setPadding(dp(8), dp(3), dp(8), dp(3));
         GradientDrawable d = new GradientDrawable();
         d.setColor(bg);
         d.setCornerRadius(dp(20));
