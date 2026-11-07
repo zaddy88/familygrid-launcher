@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navbar_label">Botones grandes de FamilyGrid</string>
+    <string name="navbar_description">Muestra botones grandes y con nombre para Atrás, Inicio y Todas las apps en la parte inferior de la pantalla en cada app, en lugar de los iconos pequeños del sistema. Solo dibuja estos botones. No lee, recopila ni comparte nada de tu pantalla.</string>
+
+    <string name="empty_tiles">Aún no hay mosaicos.\nMantén pulsado el reloj 2 segundos para añadir algunos.</string>
+    <string name="home_all_apps">☰  Todas las apps</string>
+    <string name="not_installed">No instalada</string>
+    <string name="tile_unavailable">%1$s no está disponible en este teléfono</string>
+    <string name="hint_hold_clock">Consejo: mantén pulsado el reloj 2 segundos para editar los mosaicos</string>
+    <string name="chip_wifi_ok">Wi-Fi\n✓ Funciona</string>
+    <string name="chip_wifi_no_internet">Wi-Fi\n! Sin internet</string>
+    <string name="chip_wifi_off">Wi-Fi\n✕ Apagado</string>
+    <string name="chip_battery">Batería\n%1$d%%</string>
+    <string name="chip_charging">Cargando\n⚡ %1$d%%</string>
+    <string name="chip_charge_me">¡Cárgame!\n%1$d%%</string>
+    <string name="chip_bt_connected">Bluetooth\n%1$s</string>
+    <string name="chip_bt_connected_unnamed">Bluetooth\nConectado</string>
+    <string name="chip_bt_on">Bluetooth\nEncendido</string>
+    <string name="chip_bt_allow">Bluetooth\nToca para permitir</string>
+    <string name="chip_bt_off">Bluetooth\nApagado</string>
+
+    <string name="back">‹  Atrás</string>
+    <string name="all_apps_title">Todas las apps</string>
+    <string name="could_not_open">No se pudo abrir %1$s</string>
+    <string name="nav_back">‹  Atrás</string>
+    <string name="nav_home">●  Inicio</string>
+    <string name="nav_apps">☰  Apps</string>
+
+    <string name="tile_phone">Teléfono</string>
+    <string name="tile_camera">Cámara</string>
+    <string name="tile_photos">Fotos</string>
+    <string name="tile_quran">Corán</string>
+    <string name="tile_fm_radio">Radio FM</string>
+
+    <string name="title_welcome">Bienvenido a FamilyGrid</string>
+    <string name="title_edit">Editar pantalla de inicio</string>
+    <string name="setup_intro">Elige las apps y las personas que se mostrarán como mosaicos grandes. Puedes cambiarlo todo más tarde manteniendo pulsado el reloj de la pantalla de inicio durante 2 segundos.</string>
+    <string name="section_language">Idioma</string>
+    <string name="lang_system">Idioma del teléfono</string>
+    <string name="section_tiles">Mosaicos de la pantalla de inicio</string>
+    <string name="tiles_help">Toca un mosaico para cambiar su nombre o color. Usa ▲ ▼ para moverlo.</string>
+    <string name="no_tiles_editor">Aún no hay mosaicos. Añade algunos abajo.</string>
+    <string name="tile_not_installed">no instalada</string>
+    <string name="add_app">+  Añadir una app</string>
+    <string name="add_person">+  Añadir una persona (marcación rápida)</string>
+    <string name="section_text_size">Tamaño del texto</string>
+    <string name="text_normal">Normal</string>
+    <string name="text_large">Grande</string>
+    <string name="text_xlarge">Muy grande</string>
+    <string name="section_show">Mostrar en la pantalla de inicio</string>
+    <string name="show_wifi">Estado del Wi-Fi</string>
+    <string name="show_battery">Nivel de batería</string>
+    <string name="show_bluetooth">Bluetooth (muestra auriculares o coche conectados)</string>
+    <string name="show_all_apps">Botón \"Todas las apps\"</string>
+    <string name="section_navbar">Botones grandes de Atrás / Inicio</string>
+    <string name="navbar_help">Muestra botones grandes y con nombre para Atrás, Inicio y Todas las apps en la parte inferior de cada app, en lugar de los iconos pequeños del sistema. Android pide que lo actives tú: busca \"FamilyGrid big buttons\" y actívalo.</string>
+    <string name="navbar_is_on">✓ Activado  ·  toca para desactivar</string>
+    <string name="navbar_turn_on">Activar botones grandes</string>
+    <string name="navbar_rename">Cambiar el nombre de los botones</string>
+    <string name="section_calling">Llamadas</string>
+    <string name="direct_call">Los mosaicos de personas llaman al instante (sin otro toque)</string>
+    <string name="keypad_fallback">Los mosaicos de personas abrirán el teclado con el número listo</string>
+    <string name="section_lock">Bloquear esta pantalla</string>
+    <string name="lock_help">Un PIN evita que alguien cambie los mosaicos por error.</string>
+    <string name="set_pin">Poner un PIN</string>
+    <string name="change_pin">Cambiar PIN</string>
+    <string name="remove_pin">Quitar PIN</string>
+    <string name="pin_removed">PIN quitado</string>
+    <string name="pin_saved">PIN guardado</string>
+    <string name="pin_too_short">Usa al menos 4 dígitos</string>
+    <string name="new_pin_hint">Nuevo PIN (4 o más dígitos)</string>
+    <string name="enter_pin">Introduce el PIN</string>
+    <string name="wrong_pin">PIN incorrecto</string>
+    <string name="open">Abrir</string>
+    <string name="section_more">Más</string>
+    <string name="choose_home">Elegir app de inicio predeterminada</string>
+    <string name="phone_settings">Abrir ajustes del teléfono</string>
+    <string name="reset_tiles">Restablecer mosaicos predeterminados</string>
+    <string name="reset_confirm_title">¿Restablecer todos los mosaicos?</string>
+    <string name="reset_confirm_msg">Se quitarán tus propios mosaicos y personas.</string>
+    <string name="finish_setup">Terminar configuración</string>
+    <string name="done">Listo</string>
+    <string name="remove_tile_q">¿Quitar \"%1$s\"?</string>
+    <string name="rename">Cambiar nombre</string>
+    <string name="change_colour">Cambiar color</string>
+    <string name="new_name">Nombre nuevo</string>
+    <string name="colour">Color</string>
+    <string-array name="colour_names">
+        <item>Azul</item><item>Verde</item><item>Rojo</item><item>Ámbar</item><item>Morado</item>
+        <item>Turquesa</item><item>Naranja</item><item>Rosa</item><item>Gris</item>
+    </string-array>
+    <string name="save">Guardar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="add">Añadir</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+    <string name="reset">Restablecer</string>
+    <string name="saved">Guardado</string>
+    <string name="add_app_title">Añadir una app</string>
+    <string name="phone_keypad">📞  Teléfono (teclado)</string>
+    <string name="add_person_title">Añadir una persona</string>
+    <string name="pick_contact">Elegir de los contactos</string>
+    <string name="type_contact">Escribir nombre y número</string>
+    <string name="hint_name">Nombre (p. ej., Ana)</string>
+    <string name="hint_number">Número de teléfono</string>
+    <string name="need_name_number">Introduce un nombre y un número</string>
+    <string name="could_not_save">No se pudieron guardar los mosaicos</string>
+    <string name="rename_buttons_title">Cambiar el nombre de los botones</string>
+    <string name="rename_buttons_msg">Deja una casilla vacía para usar el nombre estándar.</string>
+    <string name="label_back_button">Botón Atrás</string>
+    <string name="label_home_button">Botón Inicio</string>
+    <string name="label_apps_button">Botón Apps</string>
+</resources>

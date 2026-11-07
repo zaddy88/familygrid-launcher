@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navbar_label">فیملی گرڈ بڑے بٹن</string>
+    <string name="navbar_description">ہر ایپ میں اسکرین کے نیچے چھوٹے سسٹم آئیکنز کی جگہ بڑے، نام والے واپس، ہوم اور تمام ایپس کے بٹن دکھاتا ہے۔ یہ صرف یہ بٹن بناتا ہے۔ یہ آپ کی اسکرین پر موجود کچھ بھی نہ پڑھتا ہے، نہ جمع کرتا ہے اور نہ شیئر کرتا ہے۔</string>
+
+    <string name="empty_tiles">ابھی کوئی ٹائل نہیں۔\nٹائل شامل کرنے کے لیے گھڑی کو 2 سیکنڈ دبا کر رکھیں۔</string>
+    <string name="home_all_apps">☰  تمام ایپس</string>
+    <string name="not_installed">انسٹال نہیں</string>
+    <string name="tile_unavailable">%1$s اس فون پر موجود نہیں</string>
+    <string name="hint_hold_clock">مشورہ: ٹائلز بدلنے کے لیے گھڑی کو 2 سیکنڈ دبا کر رکھیں</string>
+    <string name="chip_wifi_ok">وائی فائی\n✓ چل رہا ہے</string>
+    <string name="chip_wifi_no_internet">وائی فائی\n! انٹرنیٹ نہیں</string>
+    <string name="chip_wifi_off">وائی فائی\n✕ بند</string>
+    <string name="chip_battery">بیٹری\n%1$d%%</string>
+    <string name="chip_charging">چارج ہو رہا ہے\n⚡ %1$d%%</string>
+    <string name="chip_charge_me">چارج کریں!\n%1$d%%</string>
+    <string name="chip_bt_connected">بلوٹوتھ\n%1$s</string>
+    <string name="chip_bt_connected_unnamed">بلوٹوتھ\nجڑا ہوا</string>
+    <string name="chip_bt_on">بلوٹوتھ\nآن</string>
+    <string name="chip_bt_allow">بلوٹوتھ\nاجازت کے لیے دبائیں</string>
+    <string name="chip_bt_off">بلوٹوتھ\nبند</string>
+
+    <string name="back">›  واپس</string>
+    <string name="all_apps_title">تمام ایپس</string>
+    <string name="could_not_open">%1$s نہیں کھل سکی</string>
+    <string name="nav_back">›  واپس</string>
+    <string name="nav_home">●  ہوم</string>
+    <string name="nav_apps">☰  ایپس</string>
+
+    <string name="tile_phone">فون</string>
+    <string name="tile_camera">کیمرا</string>
+    <string name="tile_photos">تصاویر</string>
+    <string name="tile_quran">قرآن</string>
+    <string name="tile_fm_radio">ایف ایم ریڈیو</string>
+
+    <string name="title_welcome">فیملی گرڈ میں خوش آمدید</string>
+    <string name="title_edit">ہوم اسکرین میں تبدیلی</string>
+    <string name="setup_intro">وہ ایپس اور لوگ چنیں جو بڑی ٹائلز کی صورت میں دکھیں۔ بعد میں یہ سب ہوم اسکرین پر گھڑی کو 2 سیکنڈ دبا کر بدلا جا سکتا ہے۔</string>
+    <string name="section_language">زبان</string>
+    <string name="lang_system">فون کی زبان</string>
+    <string name="section_tiles">ہوم اسکرین کی ٹائلز</string>
+    <string name="tiles_help">نام یا رنگ بدلنے کے لیے ٹائل کو دبائیں۔ جگہ بدلنے کے لیے ▲ ▼ استعمال کریں۔</string>
+    <string name="no_tiles_editor">ابھی کوئی ٹائل نہیں۔ نیچے سے شامل کریں۔</string>
+    <string name="tile_not_installed">انسٹال نہیں</string>
+    <string name="add_app">+  ایپ شامل کریں</string>
+    <string name="add_person">+  کسی شخص کو شامل کریں (اسپیڈ ڈائل)</string>
+    <string name="section_text_size">لکھائی کا سائز</string>
+    <string name="text_normal">عام</string>
+    <string name="text_large">بڑا</string>
+    <string name="text_xlarge">بہت بڑا</string>
+    <string name="section_show">ہوم اسکرین پر دکھائیں</string>
+    <string name="show_wifi">وائی فائی کی حالت</string>
+    <string name="show_battery">بیٹری کی سطح</string>
+    <string name="show_bluetooth">بلوٹوتھ (جڑا ہوا ہیڈفون یا گاڑی دکھاتا ہے)</string>
+    <string name="show_all_apps">\"تمام ایپس\" کا بٹن</string>
+    <string name="section_navbar">بڑے واپس / ہوم بٹن</string>
+    <string name="navbar_help">ہر ایپ کے نیچے چھوٹے سسٹم آئیکنز کی جگہ بڑے، نام والے واپس، ہوم اور تمام ایپس کے بٹن دکھاتا ہے۔ اینڈرائیڈ کہتا ہے کہ اسے آپ خود آن کریں: \"FamilyGrid big buttons\" ڈھونڈیں اور آن کر دیں۔</string>
+    <string name="navbar_is_on">✓ آن  ·  بند کرنے کے لیے دبائیں</string>
+    <string name="navbar_turn_on">بڑے بٹن آن کریں</string>
+    <string name="navbar_rename">بٹنوں کے نام بدلیں</string>
+    <string name="section_calling">کال کرنا</string>
+    <string name="direct_call">شخص کی ٹائل فوراً کال کرے (اضافی ٹیپ کے بغیر)</string>
+    <string name="keypad_fallback">شخص کی ٹائل نمبر کے ساتھ کی پیڈ کھولے گی</string>
+    <string name="section_lock">اس اسکرین کو لاک کریں</string>
+    <string name="lock_help">پن لگانے سے کوئی غلطی سے ٹائلز نہیں بدل سکے گا۔</string>
+    <string name="set_pin">پن لگائیں</string>
+    <string name="change_pin">پن بدلیں</string>
+    <string name="remove_pin">پن ہٹائیں</string>
+    <string name="pin_removed">پن ہٹا دیا گیا</string>
+    <string name="pin_saved">پن محفوظ ہو گیا</string>
+    <string name="pin_too_short">کم از کم 4 ہندسے استعمال کریں</string>
+    <string name="new_pin_hint">نیا پن (4 یا زیادہ ہندسے)</string>
+    <string name="enter_pin">پن درج کریں</string>
+    <string name="wrong_pin">غلط پن</string>
+    <string name="open">کھولیں</string>
+    <string name="section_more">مزید</string>
+    <string name="choose_home">ڈیفالٹ ہوم ایپ چنیں</string>
+    <string name="phone_settings">فون کی سیٹنگز کھولیں</string>
+    <string name="reset_tiles">ٹائلز کو اصل حالت پر لائیں</string>
+    <string name="reset_confirm_title">تمام ٹائلز ری سیٹ کریں؟</string>
+    <string name="reset_confirm_msg">آپ کی اپنی بنائی ہوئی ٹائلز اور لوگ ہٹ جائیں گے۔</string>
+    <string name="finish_setup">سیٹ اپ مکمل کریں</string>
+    <string name="done">ہو گیا</string>
+    <string name="remove_tile_q">\"%1$s\" ہٹا دیں؟</string>
+    <string name="rename">نام بدلیں</string>
+    <string name="change_colour">رنگ بدلیں</string>
+    <string name="new_name">نیا نام</string>
+    <string name="colour">رنگ</string>
+    <string-array name="colour_names">
+        <item>نیلا</item><item>سبز</item><item>سرخ</item><item>کہربائی</item><item>جامنی</item>
+        <item>فیروزی</item><item>نارنجی</item><item>گلابی</item><item>سرمئی</item>
+    </string-array>
+    <string name="save">محفوظ کریں</string>
+    <string name="cancel">منسوخ</string>
+    <string name="add">شامل کریں</string>
+    <string name="yes">ہاں</string>
+    <string name="no">نہیں</string>
+    <string name="reset">ری سیٹ</string>
+    <string name="saved">محفوظ ہو گیا</string>
+    <string name="add_app_title">ایپ شامل کریں</string>
+    <string name="phone_keypad">📞  فون (کی پیڈ)</string>
+    <string name="add_person_title">کسی شخص کو شامل کریں</string>
+    <string name="pick_contact">رابطوں میں سے چنیں</string>
+    <string name="type_contact">نام اور نمبر لکھیں</string>
+    <string name="hint_name">نام (مثلاً احمد)</string>
+    <string name="hint_number">فون نمبر</string>
+    <string name="need_name_number">براہ کرم نام اور نمبر دونوں لکھیں</string>
+    <string name="could_not_save">ٹائلز محفوظ نہیں ہو سکیں</string>
+    <string name="rename_buttons_title">بٹنوں کے نام بدلیں</string>
+    <string name="rename_buttons_msg">عام نام کے لیے خانہ خالی چھوڑ دیں۔</string>
+    <string name="label_back_button">واپس کا بٹن</string>
+    <string name="label_home_button">ہوم کا بٹن</string>
+    <string name="label_apps_button">ایپس کا بٹن</string>
+</resources>

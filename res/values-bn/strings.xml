@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navbar_label">FamilyGrid বড় বোতাম</string>
+    <string name="navbar_description">প্রতিটি অ্যাপে স্ক্রিনের নিচে ছোট সিস্টেম আইকনের বদলে বড়, নাম লেখা পেছনে, হোম ও সব অ্যাপ বোতাম দেখায়। এটি শুধু এই বোতামগুলো আঁকে। এটি আপনার স্ক্রিনের কিছুই পড়ে না, সংগ্রহ করে না বা শেয়ার করে না।</string>
+
+    <string name="empty_tiles">এখনো কোনো টাইল নেই।\nটাইল যোগ করতে ঘড়িটি ২ সেকেন্ড চেপে ধরে রাখুন।</string>
+    <string name="home_all_apps">☰  সব অ্যাপ</string>
+    <string name="not_installed">ইনস্টল করা নেই</string>
+    <string name="tile_unavailable">%1$s এই ফোনে নেই</string>
+    <string name="hint_hold_clock">পরামর্শ: টাইল বদলাতে ঘড়িটি ২ সেকেন্ড চেপে ধরে রাখুন</string>
+    <string name="chip_wifi_ok">Wi-Fi\n✓ চলছে</string>
+    <string name="chip_wifi_no_internet">Wi-Fi\n! ইন্টারনেট নেই</string>
+    <string name="chip_wifi_off">Wi-Fi\n✕ বন্ধ</string>
+    <string name="chip_battery">ব্যাটারি\n%1$d%%</string>
+    <string name="chip_charging">চার্জ হচ্ছে\n⚡ %1$d%%</string>
+    <string name="chip_charge_me">চার্জ দিন!\n%1$d%%</string>
+    <string name="chip_bt_connected">ব্লুটুথ\n%1$s</string>
+    <string name="chip_bt_connected_unnamed">ব্লুটুথ\nসংযুক্ত</string>
+    <string name="chip_bt_on">ব্লুটুথ\nচালু</string>
+    <string name="chip_bt_allow">ব্লুটুথ\nঅনুমতি দিতে চাপুন</string>
+    <string name="chip_bt_off">ব্লুটুথ\nবন্ধ</string>
+
+    <string name="back">‹  পেছনে</string>
+    <string name="all_apps_title">সব অ্যাপ</string>
+    <string name="could_not_open">%1$s খোলা গেল না</string>
+    <string name="nav_back">‹  পেছনে</string>
+    <string name="nav_home">●  হোম</string>
+    <string name="nav_apps">☰  অ্যাপ</string>
+
+    <string name="tile_phone">ফোন</string>
+    <string name="tile_camera">ক্যামেরা</string>
+    <string name="tile_photos">ছবি</string>
+    <string name="tile_quran">কুরআন</string>
+    <string name="tile_fm_radio">এফএম রেডিও</string>
+
+    <string name="title_welcome">FamilyGrid-এ স্বাগতম</string>
+    <string name="title_edit">হোম স্ক্রিন বদলান</string>
+    <string name="setup_intro">যে অ্যাপ ও মানুষদের বড় টাইল হিসেবে দেখাতে চান তা বেছে নিন। পরে হোম স্ক্রিনে ঘড়িটি ২ সেকেন্ড চেপে ধরে এসব বদলানো যাবে।</string>
+    <string name="section_language">ভাষা</string>
+    <string name="lang_system">ফোনের ভাষা</string>
+    <string name="section_tiles">হোম স্ক্রিনের টাইল</string>
+    <string name="tiles_help">নাম বা রং বদলাতে টাইলে চাপুন। জায়গা বদলাতে ▲ ▼ ব্যবহার করুন।</string>
+    <string name="no_tiles_editor">এখনো কোনো টাইল নেই। নিচ থেকে যোগ করুন।</string>
+    <string name="tile_not_installed">ইনস্টল করা নেই</string>
+    <string name="add_app">+  অ্যাপ যোগ করুন</string>
+    <string name="add_person">+  মানুষ যোগ করুন (স্পিড ডায়াল)</string>
+    <string name="section_text_size">লেখার আকার</string>
+    <string name="text_normal">সাধারণ</string>
+    <string name="text_large">বড়</string>
+    <string name="text_xlarge">খুব বড়</string>
+    <string name="section_show">হোম স্ক্রিনে দেখান</string>
+    <string name="show_wifi">Wi-Fi অবস্থা</string>
+    <string name="show_battery">ব্যাটারির মাত্রা</string>
+    <string name="show_bluetooth">ব্লুটুথ (সংযুক্ত হেডফোন বা গাড়ি দেখায়)</string>
+    <string name="show_all_apps">\"সব অ্যাপ\" বোতাম</string>
+    <string name="section_navbar">বড় পেছনে / হোম বোতাম</string>
+    <string name="navbar_help">প্রতিটি অ্যাপের নিচে ছোট সিস্টেম আইকনের বদলে বড়, নাম লেখা পেছনে, হোম ও সব অ্যাপ বোতাম দেখায়। Android বলে এটি আপনাকে নিজে চালু করতে হবে: \"FamilyGrid big buttons\" খুঁজে চালু করুন।</string>
+    <string name="navbar_is_on">✓ চালু  ·  বন্ধ করতে চাপুন</string>
+    <string name="navbar_turn_on">বড় বোতাম চালু করুন</string>
+    <string name="navbar_rename">বোতামের নাম বদলান</string>
+    <string name="section_calling">কল করা</string>
+    <string name="direct_call">মানুষের টাইল সরাসরি কল করবে (বাড়তি চাপ ছাড়া)</string>
+    <string name="keypad_fallback">মানুষের টাইল নম্বরসহ কীপ্যাড খুলবে</string>
+    <string name="section_lock">এই স্ক্রিন লক করুন</string>
+    <string name="lock_help">PIN দিলে কেউ ভুল করে টাইল বদলাতে পারবে না।</string>
+    <string name="set_pin">PIN দিন</string>
+    <string name="change_pin">PIN বদলান</string>
+    <string name="remove_pin">PIN সরান</string>
+    <string name="pin_removed">PIN সরানো হয়েছে</string>
+    <string name="pin_saved">PIN সংরক্ষিত হয়েছে</string>
+    <string name="pin_too_short">অন্তত ৪টি সংখ্যা দিন</string>
+    <string name="new_pin_hint">নতুন PIN (৪ বা তার বেশি সংখ্যা)</string>
+    <string name="enter_pin">PIN লিখুন</string>
+    <string name="wrong_pin">ভুল PIN</string>
+    <string name="open">খুলুন</string>
+    <string name="section_more">আরও</string>
+    <string name="choose_home">ডিফল্ট হোম অ্যাপ বেছে নিন</string>
+    <string name="phone_settings">ফোনের সেটিংস খুলুন</string>
+    <string name="reset_tiles">টাইল আগের অবস্থায় ফেরান</string>
+    <string name="reset_confirm_title">সব টাইল রিসেট করবেন?</string>
+    <string name="reset_confirm_msg">আপনার নিজের যোগ করা টাইল ও মানুষ মুছে যাবে।</string>
+    <string name="finish_setup">সেটআপ শেষ করুন</string>
+    <string name="done">হয়ে গেছে</string>
+    <string name="remove_tile_q">\"%1$s\" সরাবেন?</string>
+    <string name="rename">নাম বদলান</string>
+    <string name="change_colour">রং বদলান</string>
+    <string name="new_name">নতুন নাম</string>
+    <string name="colour">রং</string>
+    <string-array name="colour_names">
+        <item>নীল</item><item>সবুজ</item><item>লাল</item><item>অ্যাম্বার</item><item>বেগুনি</item>
+        <item>ফিরোজা</item><item>কমলা</item><item>গোলাপি</item><item>ধূসর</item>
+    </string-array>
+    <string name="save">সংরক্ষণ</string>
+    <string name="cancel">বাতিল</string>
+    <string name="add">যোগ করুন</string>
+    <string name="yes">হ্যাঁ</string>
+    <string name="no">না</string>
+    <string name="reset">রিসেট</string>
+    <string name="saved">সংরক্ষিত</string>
+    <string name="add_app_title">অ্যাপ যোগ করুন</string>
+    <string name="phone_keypad">📞  ফোন (কীপ্যাড)</string>
+    <string name="add_person_title">মানুষ যোগ করুন</string>
+    <string name="pick_contact">পরিচিতি থেকে বেছে নিন</string>
+    <string name="type_contact">নাম ও নম্বর লিখুন</string>
+    <string name="hint_name">নাম (যেমন আহমেদ)</string>
+    <string name="hint_number">ফোন নম্বর</string>
+    <string name="need_name_number">অনুগ্রহ করে নাম ও নম্বর দুটোই লিখুন</string>
+    <string name="could_not_save">টাইল সংরক্ষণ করা গেল না</string>
+    <string name="rename_buttons_title">বোতামের নাম বদলান</string>
+    <string name="rename_buttons_msg">সাধারণ নাম রাখতে ঘরটি খালি রাখুন।</string>
+    <string name="label_back_button">পেছনে বোতাম</string>
+    <string name="label_home_button">হোম বোতাম</string>
+    <string name="label_apps_button">অ্যাপ বোতাম</string>
+</resources>

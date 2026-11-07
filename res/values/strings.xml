@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FamilyGrid Launcher</string>
+    <string name="navbar_label">FamilyGrid big buttons</string>
+    <string name="navbar_description">Shows large, labelled Back, Home and All apps buttons at the bottom of the screen in every app, in place of the small system icons. It only draws these buttons. It does not read, collect or share anything on your screen.</string>
+
+    <!-- home screen -->
+    <string name="empty_tiles">No tiles yet.\nHold the clock for 2 seconds to add some.</string>
+    <string name="home_all_apps">☰  All apps</string>
+    <string name="not_installed">Not installed</string>
+    <string name="tile_unavailable">%1$s is not available on this phone</string>
+    <string name="hint_hold_clock">Tip: hold the clock for 2 seconds to edit the tiles</string>
+    <string name="chip_wifi_ok">Wi-Fi\n✓ Working</string>
+    <string name="chip_wifi_no_internet">Wi-Fi\n! No internet</string>
+    <string name="chip_wifi_off">Wi-Fi\n✕ Off</string>
+    <string name="chip_battery">Battery\n%1$d%%</string>
+    <string name="chip_charging">Charging\n⚡ %1$d%%</string>
+    <string name="chip_charge_me">Charge me!\n%1$d%%</string>
+    <string name="chip_bt_connected">Bluetooth\n%1$s</string>
+    <string name="chip_bt_connected_unnamed">Bluetooth\nConnected</string>
+    <string name="chip_bt_on">Bluetooth\nOn</string>
+    <string name="chip_bt_allow">Bluetooth\nTap to allow</string>
+    <string name="chip_bt_off">Bluetooth\nOff</string>
+
+    <!-- all apps + big buttons -->
+    <string name="back">‹  Back</string>
+    <string name="all_apps_title">All apps</string>
+    <string name="could_not_open">Could not open %1$s</string>
+    <string name="nav_back">‹  Back</string>
+    <string name="nav_home">●  Home</string>
+    <string name="nav_apps">☰  Apps</string>
+
+    <!-- default tile names (brand names like WhatsApp stay as they are) -->
+    <string name="tile_phone">Phone</string>
+    <string name="tile_camera">Camera</string>
+    <string name="tile_photos">Photos</string>
+    <string name="tile_quran">Quran</string>
+    <string name="tile_fm_radio">FM Radio</string>
+
+    <!-- editor / setup -->
+    <string name="title_welcome">Welcome to FamilyGrid</string>
+    <string name="title_edit">Edit home screen</string>
+    <string name="setup_intro">Choose the apps and people to show as big tiles. You can change all of this later by holding the clock on the home screen for 2 seconds.</string>
+    <string name="section_language">Language</string>
+    <string name="lang_system">Phone\'s language</string>
+    <string name="section_tiles">Tiles on the home screen</string>
+    <string name="tiles_help">Tap a tile to rename it or change its colour. Use ▲ ▼ to move it.</string>
+    <string name="no_tiles_editor">No tiles yet. Add some below.</string>
+    <string name="tile_not_installed">not installed</string>
+    <string name="add_app">+  Add an app</string>
+    <string name="add_person">+  Add a person (speed dial)</string>
+    <string name="section_text_size">Text size</string>
+    <string name="text_normal">Normal</string>
+    <string name="text_large">Large</string>
+    <string name="text_xlarge">Extra large</string>
+    <string name="section_show">Show on the home screen</string>
+    <string name="show_wifi">Wi-Fi status</string>
+    <string name="show_battery">Battery level</string>
+    <string name="show_bluetooth">Bluetooth (shows connected headphones/car)</string>
+    <string name="show_all_apps">\"All apps\" button</string>
+    <string name="section_navbar">Big Back / Home buttons</string>
+    <string name="navbar_help">Shows large labelled Back, Home and All apps buttons at the bottom of every app, in place of the small system icons. Android asks you to switch this on yourself: find \"FamilyGrid big buttons\" and turn it on.</string>
+    <string name="navbar_is_on">✓ On  ·  tap to switch off</string>
+    <string name="navbar_turn_on">Switch on big buttons</string>
+    <string name="navbar_rename">Rename the buttons</string>
+    <string name="section_calling">Calling</string>
+    <string name="direct_call">Person tiles call straight away (no extra tap)</string>
+    <string name="keypad_fallback">Person tiles will open the keypad with the number ready</string>
+    <string name="section_lock">Lock this screen</string>
+    <string name="lock_help">A PIN stops anyone changing the tiles by accident.</string>
+    <string name="set_pin">Set a PIN</string>
+    <string name="change_pin">Change PIN</string>
+    <string name="remove_pin">Remove PIN</string>
+    <string name="pin_removed">PIN removed</string>
+    <string name="pin_saved">PIN saved</string>
+    <string name="pin_too_short">Use at least 4 digits</string>
+    <string name="new_pin_hint">New PIN (4+ digits)</string>
+    <string name="enter_pin">Enter PIN</string>
+    <string name="wrong_pin">Wrong PIN</string>
+    <string name="open">Open</string>
+    <string name="section_more">More</string>
+    <string name="choose_home">Choose default home app</string>
+    <string name="phone_settings">Open phone settings</string>
+    <string name="reset_tiles">Reset tiles to defaults</string>
+    <string name="reset_confirm_title">Reset all tiles?</string>
+    <string name="reset_confirm_msg">Your own tiles and people will be removed.</string>
+    <string name="finish_setup">Finish setup</string>
+    <string name="done">Done</string>
+    <string name="remove_tile_q">Remove \"%1$s\"?</string>
+    <string name="rename">Rename</string>
+    <string name="change_colour">Change colour</string>
+    <string name="new_name">New name</string>
+    <string name="colour">Colour</string>
+    <string-array name="colour_names">
+        <item>Blue</item><item>Green</item><item>Red</item><item>Amber</item><item>Purple</item>
+        <item>Teal</item><item>Orange</item><item>Pink</item><item>Grey</item>
+    </string-array>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">Add</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="reset">Reset</string>
+    <string name="saved">Saved</string>
+    <string name="add_app_title">Add an app</string>
+    <string name="phone_keypad">📞  Phone (keypad)</string>
+    <string name="add_person_title">Add a person</string>
+    <string name="pick_contact">Choose from contacts</string>
+    <string name="type_contact">Type a name and number</string>
+    <string name="hint_name">Name (e.g. Ahmed)</string>
+    <string name="hint_number">Phone number</string>
+    <string name="need_name_number">Please enter a name and a number</string>
+    <string name="could_not_save">Could not save tiles</string>
+    <string name="rename_buttons_title">Rename the buttons</string>
+    <string name="rename_buttons_msg">Leave a box empty to use the standard name.</string>
+    <string name="label_back_button">Back button</string>
+    <string name="label_home_button">Home button</string>
+    <string name="label_apps_button">Apps button</string>
+</resources>

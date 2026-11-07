@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navbar_label">أزرار FamilyGrid الكبيرة</string>
+    <string name="navbar_description">يعرض أزرار رجوع والرئيسية وكل التطبيقات كبيرة ومكتوبة أسفل الشاشة في كل تطبيق، بدلاً من أيقونات النظام الصغيرة. يرسم هذه الأزرار فقط، ولا يقرأ أو يجمع أو يشارك أي شيء على شاشتك.</string>
+
+    <string name="empty_tiles">لا توجد مربعات بعد.\nاضغط مطولاً على الساعة لمدة ثانيتين لإضافة بعضها.</string>
+    <string name="home_all_apps">☰  كل التطبيقات</string>
+    <string name="not_installed">غير مثبّت</string>
+    <string name="tile_unavailable">%1$s غير موجود على هذا الهاتف</string>
+    <string name="hint_hold_clock">نصيحة: اضغط مطولاً على الساعة لمدة ثانيتين لتعديل المربعات</string>
+    <string name="chip_wifi_ok">واي فاي\n✓ يعمل</string>
+    <string name="chip_wifi_no_internet">واي فاي\n! لا إنترنت</string>
+    <string name="chip_wifi_off">واي فاي\n✕ مغلق</string>
+    <string name="chip_battery">البطارية\n%1$d%%</string>
+    <string name="chip_charging">يشحن\n⚡ %1$d%%</string>
+    <string name="chip_charge_me">اشحنّي!\n%1$d%%</string>
+    <string name="chip_bt_connected">بلوتوث\n%1$s</string>
+    <string name="chip_bt_connected_unnamed">بلوتوث\nمتصل</string>
+    <string name="chip_bt_on">بلوتوث\nمفتوح</string>
+    <string name="chip_bt_allow">بلوتوث\nاضغط للسماح</string>
+    <string name="chip_bt_off">بلوتوث\nمغلق</string>
+
+    <string name="back">›  رجوع</string>
+    <string name="all_apps_title">كل التطبيقات</string>
+    <string name="could_not_open">تعذّر فتح %1$s</string>
+    <string name="nav_back">›  رجوع</string>
+    <string name="nav_home">●  الرئيسية</string>
+    <string name="nav_apps">☰  التطبيقات</string>
+
+    <string name="tile_phone">الهاتف</string>
+    <string name="tile_camera">الكاميرا</string>
+    <string name="tile_photos">الصور</string>
+    <string name="tile_quran">القرآن</string>
+    <string name="tile_fm_radio">راديو FM</string>
+
+    <string name="title_welcome">مرحباً بك في FamilyGrid</string>
+    <string name="title_edit">تعديل الشاشة الرئيسية</string>
+    <string name="setup_intro">اختر التطبيقات والأشخاص لعرضهم كمربعات كبيرة. يمكنك تغيير كل ذلك لاحقاً بالضغط مطولاً على الساعة في الشاشة الرئيسية لمدة ثانيتين.</string>
+    <string name="section_language">اللغة</string>
+    <string name="lang_system">لغة الهاتف</string>
+    <string name="section_tiles">المربعات على الشاشة الرئيسية</string>
+    <string name="tiles_help">اضغط على مربع لتغيير اسمه أو لونه. استخدم ▲ ▼ لتحريكه.</string>
+    <string name="no_tiles_editor">لا توجد مربعات بعد. أضف بعضها بالأسفل.</string>
+    <string name="tile_not_installed">غير مثبّت</string>
+    <string name="add_app">+  إضافة تطبيق</string>
+    <string name="add_person">+  إضافة شخص (اتصال سريع)</string>
+    <string name="section_text_size">حجم الخط</string>
+    <string name="text_normal">عادي</string>
+    <string name="text_large">كبير</string>
+    <string name="text_xlarge">كبير جداً</string>
+    <string name="section_show">عرض على الشاشة الرئيسية</string>
+    <string name="show_wifi">حالة الواي فاي</string>
+    <string name="show_battery">مستوى البطارية</string>
+    <string name="show_bluetooth">بلوتوث (يعرض السماعة أو السيارة المتصلة)</string>
+    <string name="show_all_apps">زر \"كل التطبيقات\"</string>
+    <string name="section_navbar">أزرار رجوع / الرئيسية كبيرة</string>
+    <string name="navbar_help">يعرض أزرار رجوع والرئيسية وكل التطبيقات كبيرة ومكتوبة أسفل كل تطبيق، بدلاً من أيقونات النظام الصغيرة. يطلب أندرويد أن تفعّلها بنفسك: ابحث عن \"FamilyGrid big buttons\" وفعّلها.</string>
+    <string name="navbar_is_on">✓ مفعّل  ·  اضغط للإيقاف</string>
+    <string name="navbar_turn_on">تفعيل الأزرار الكبيرة</string>
+    <string name="navbar_rename">إعادة تسمية الأزرار</string>
+    <string name="section_calling">الاتصال</string>
+    <string name="direct_call">مربعات الأشخاص تتصل فوراً (دون ضغطة إضافية)</string>
+    <string name="keypad_fallback">ستفتح مربعات الأشخاص لوحة الأرقام والرقم جاهز</string>
+    <string name="section_lock">قفل هذه الشاشة</string>
+    <string name="lock_help">رمز PIN يمنع أي شخص من تغيير المربعات عن طريق الخطأ.</string>
+    <string name="set_pin">تعيين رمز PIN</string>
+    <string name="change_pin">تغيير رمز PIN</string>
+    <string name="remove_pin">إزالة رمز PIN</string>
+    <string name="pin_removed">تمت إزالة رمز PIN</string>
+    <string name="pin_saved">تم حفظ رمز PIN</string>
+    <string name="pin_too_short">استخدم 4 أرقام على الأقل</string>
+    <string name="new_pin_hint">رمز PIN جديد (4 أرقام أو أكثر)</string>
+    <string name="enter_pin">أدخل رمز PIN</string>
+    <string name="wrong_pin">رمز PIN خاطئ</string>
+    <string name="open">فتح</string>
+    <string name="section_more">المزيد</string>
+    <string name="choose_home">اختيار تطبيق الشاشة الرئيسية الافتراضي</string>
+    <string name="phone_settings">فتح إعدادات الهاتف</string>
+    <string name="reset_tiles">إعادة المربعات إلى الوضع الافتراضي</string>
+    <string name="reset_confirm_title">إعادة ضبط كل المربعات؟</string>
+    <string name="reset_confirm_msg">ستُحذف المربعات والأشخاص الذين أضفتهم.</string>
+    <string name="finish_setup">إنهاء الإعداد</string>
+    <string name="done">تم</string>
+    <string name="remove_tile_q">إزالة \"%1$s\"؟</string>
+    <string name="rename">إعادة التسمية</string>
+    <string name="change_colour">تغيير اللون</string>
+    <string name="new_name">الاسم الجديد</string>
+    <string name="colour">اللون</string>
+    <string-array name="colour_names">
+        <item>أزرق</item><item>أخضر</item><item>أحمر</item><item>كهرماني</item><item>بنفسجي</item>
+        <item>فيروزي</item><item>برتقالي</item><item>وردي</item><item>رمادي</item>
+    </string-array>
+    <string name="save">حفظ</string>
+    <string name="cancel">إلغاء</string>
+    <string name="add">إضافة</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="reset">إعادة ضبط</string>
+    <string name="saved">تم الحفظ</string>
+    <string name="add_app_title">إضافة تطبيق</string>
+    <string name="phone_keypad">📞  الهاتف (لوحة الأرقام)</string>
+    <string name="add_person_title">إضافة شخص</string>
+    <string name="pick_contact">اختيار من جهات الاتصال</string>
+    <string name="type_contact">كتابة اسم ورقم</string>
+    <string name="hint_name">الاسم (مثلاً أحمد)</string>
+    <string name="hint_number">رقم الهاتف</string>
+    <string name="need_name_number">يرجى إدخال اسم ورقم</string>
+    <string name="could_not_save">تعذّر حفظ المربعات</string>
+    <string name="rename_buttons_title">إعادة تسمية الأزرار</string>
+    <string name="rename_buttons_msg">اترك المربع فارغاً لاستخدام الاسم العادي.</string>
+    <string name="label_back_button">زر الرجوع</string>
+    <string name="label_home_button">زر الرئيسية</string>
+    <string name="label_apps_button">زر التطبيقات</string>
+</resources>
