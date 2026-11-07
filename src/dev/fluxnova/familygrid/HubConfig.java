@@ -303,6 +303,24 @@ final class HubConfig {
         return out;
     }
 
+    // Quiet mode: hide notifications from apps that aren't allowed.
+    static boolean quietMode(Context c) {
+        return prefs(c).getBoolean("quiet_mode", false);
+    }
+
+    static void setQuietMode(Context c, boolean on) {
+        prefs(c).edit().putBoolean("quiet_mode", on).apply();
+    }
+
+    /** Apps the family allowed to notify on top of the tiles and the essentials. */
+    static java.util.Set<String> quietExtras(Context c) {
+        return new java.util.HashSet<>(prefs(c).getStringSet("quiet_extras", new java.util.HashSet<>()));
+    }
+
+    static void setQuietExtras(Context c, java.util.Set<String> pkgs) {
+        prefs(c).edit().putStringSet("quiet_extras", new java.util.HashSet<>(pkgs)).apply();
+    }
+
     /** First-run setup has been completed (or skipped). */
     static boolean setupDone(Context c) {
         return prefs(c).getBoolean("setup_done", false);

@@ -51,6 +51,7 @@ public class SettingsActivity extends Activity {
     private static final String EXTRA_UNLOCKED = "unlocked";
 
     private LinearLayout checklistBox;
+    private CompoundButton quietBox;
     private boolean uiBuilt;
 
     /** Opens settings; the PIN (if any) is asked by SettingsActivity itself. */
@@ -126,6 +127,7 @@ public class SettingsActivity extends Activity {
         if (directCallBox != null) {
             directCallBox.setChecked(HubConfig.directCall(this) && HubActions.canCallDirectly(this));
         }
+        if (quietBox != null) quietBox.setChecked(HubConfig.quietMode(this));
     }
 
     @Override public void onBackPressed() {
@@ -191,6 +193,21 @@ public class SettingsActivity extends Activity {
         show.addView(toggle(getString(R.string.show_battery), HubConfig.SHOW_BATTERY));
         show.addView(toggle(getString(R.string.show_bluetooth), HubConfig.SHOW_BLUETOOTH));
         show.addView(toggle(getString(R.string.show_all_apps), HubConfig.SHOW_ALL_APPS));
+
+        // ---- quiet mode: hide junk notifications ----
+        LinearLayout quiet = card(col, getString(R.string.section_quiet));
+        quiet.addView(text(getString(R.string.quiet_help), 15, false));
+        quietBox = checkbox(getString(R.string.quiet_switch));
+        quietBox.setChecked(HubConfig.quietMode(this));
+        quietBox.setOnCheckedChangeListener((v, on) -> {
+            if (!v.isPressed()) return;
+            HubConfig.setQuietMode(this, on);
+            HubConfig.touch(this);
+            if (on && !QuietService.hasAccess(this)) openQuietAccess();
+            renderChecklist();
+        });
+        quiet.addView(quietBox);
+        quiet.addView(button(getString(R.string.quiet_allow_more), v -> pickQuietExtras()));
 
         // ---- 6. big navigation buttons ----
         LinearLayout nav = card(col, getString(R.string.section_navbar));
@@ -288,16 +305,21 @@ public class SettingsActivity extends Activity {
         if (checklistBox == null) return;
         checklistBox.removeAllViews();
         checkRow(getString(R.string.check_home), true, HubActions.isDefaultHome(this),
-            () -> HubActions.openHomeSettings(this));
+            () -> guide(R.string.guide_home, () -> HubActions.openHomeSettings(this)));
         checkRow(getString(R.string.check_navbar), false, NavBarService.isEnabled(this),
             () -> openBigButtonsSettings());
-        checkRow(getString(R.string.check_call), false, HubActions.canCallDirectly(this), () -> {
-            HubConfig.setDirectCall(this, true);
-            requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, REQ_CALL_PERMISSION);
-        });
+        checkRow(getString(R.string.check_call), false, HubActions.canCallDirectly(this),
+            () -> guide(R.string.guide_call, () -> {
+                HubConfig.setDirectCall(this, true);
+                requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, REQ_CALL_PERMISSION);
+            }));
+        if (HubConfig.quietMode(this)) {
+            checkRow(getString(R.string.check_quiet), false, QuietService.hasAccess(this), this::openQuietAccess);
+        }
         if (HubConfig.isShown(this, HubConfig.SHOW_BLUETOOTH) && android.os.Build.VERSION.SDK_INT >= 31) {
             checkRow(getString(R.string.check_bt), false, !HubActions.needsBluetoothPermission(this),
-                () -> requestPermissions(new String[]{"android.permission.BLUETOOTH_CONNECT"}, REQ_BT_PERMISSION));
+                () -> guide(R.string.guide_bt, () -> requestPermissions(
+                    new String[]{"android.permission.BLUETOOTH_CONNECT"}, REQ_BT_PERMISSION)));
         }
     }
 
@@ -599,6 +621,11 @@ public class SettingsActivity extends Activity {
 
     @Override public void onRequestPermissionsResult(int req, String[] perms, int[] results) {
         refreshStatus();
+        boolean denied = results.length > 0 && results[0] != PackageManager.PERMISSION_GRANTED;
+        if (denied && perms.length > 0 && !shouldShowRequestPermissionRationale(perms[0])) {
+            // "Don't ask again" was chosen earlier, so Android shows nothing: go to the app's page
+            HubActions.openAppDetails(this);
+        }
         if (req != REQ_CALL_PERMISSION) return;
         boolean granted = results.length > 0 && results[0] == PackageManager.PERMISSION_GRANTED;
         if (!granted) {
@@ -624,6 +651,48 @@ public class SettingsActivity extends Activity {
             .setMessage(R.string.navbar_disclosure_msg)
             .setPositiveButton(R.string.agree_continue, (d, w) -> HubActions.openAccessibilitySettings(this))
             .setNegativeButton(R.string.no_thanks, null)
+            .show();
+    }
+
+    /** Short "what to do next" note before sending someone to an Android screen. */
+    private void guide(int messageRes, Runnable go) {
+        new AlertDialog.Builder(this)
+            .setTitle(R.string.guide_title)
+            .setMessage(messageRes)
+            .setPositiveButton(R.string.continue_btn, (d, w) -> go.run())
+            .setNegativeButton(R.string.cancel, null)
+            .show();
+    }
+
+    /** Same Play rule as the big buttons: explain, get an explicit "agree", then open Android settings. */
+    private void openQuietAccess() {
+        new AlertDialog.Builder(this)
+            .setTitle(R.string.quiet_disclosure_title)
+            .setMessage(R.string.quiet_disclosure_msg)
+            .setPositiveButton(R.string.agree_continue, (d, w) -> HubActions.openNotificationAccess(this))
+            .setNegativeButton(R.string.no_thanks, null)
+            .show();
+    }
+
+    private void pickQuietExtras() {
+        List<HubActions.AppEntry> apps = HubActions.launchableApps(this);
+        java.util.Set<String> extras = HubConfig.quietExtras(this);
+        String[] labels = new String[apps.size()];
+        boolean[] checked = new boolean[apps.size()];
+        for (int i = 0; i < apps.size(); i++) {
+            labels[i] = apps.get(i).label;
+            checked[i] = extras.contains(apps.get(i).pkg);
+        }
+        new AlertDialog.Builder(this)
+            .setTitle(R.string.quiet_allow_title)
+            .setMultiChoiceItems(labels, checked, (d, which, on) -> checked[which] = on)
+            .setPositiveButton(R.string.save, (d, w) -> {
+                java.util.Set<String> out = new java.util.HashSet<>();
+                for (int i = 0; i < apps.size(); i++) if (checked[i]) out.add(apps.get(i).pkg);
+                HubConfig.setQuietExtras(this, out);
+                HubConfig.touch(this);
+            })
+            .setNegativeButton(R.string.cancel, null)
             .show();
     }
 

@@ -34,6 +34,12 @@ If you switch it on, this service draws large Back, Home and Apps buttons and pe
 the Back and Home actions when you tap them. It is set up so it **cannot read screen content**
 (`canRetrieveWindowContent="false"`). It does not collect, store or share any data.
 
+## Quiet mode (notification access)
+
+If you switch on Quiet mode and grant notification access, the app checks **which app** posted each
+notification and hides it if that app isn't allowed. The title and text of notifications are never read,
+stored or shared, and nothing leaves the phone.
+
 ## Children
 
 The app is meant to be set up by adults for older relatives and is not directed at children.

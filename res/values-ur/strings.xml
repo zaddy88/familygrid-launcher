@@ -138,4 +138,22 @@
     <string name="navbar_disclosure_msg">فیملی گرڈ اینڈرائیڈ کی ایکسیسبلٹی سروس صرف بڑے واپس، ہوم اور ایپس بٹن دکھانے، اور ان کو دبانے پر واپس یا ہوم جانے کے لیے استعمال کرتا ہے۔\n\nیہ آپ کی اسکرین پر موجود کچھ نہیں پڑھتا۔ کوئی معلومات جمع، محفوظ یا شیئر نہیں کی جاتی۔\n\nاگلی اسکرین پر \"FamilyGrid big buttons\" ڈھونڈیں اور آن کریں۔</string>
     <string name="agree_continue">متفق ہوں اور آگے بڑھیں</string>
     <string name="no_thanks">نہیں شکریہ</string>
+
+    <!-- quiet mode -->
+    <string name="quiet_label">فیملی گرڈ خاموش موڈ</string>
+    <string name="section_quiet">خاموش موڈ</string>
+    <string name="quiet_help">اُن ایپس کی اطلاعات چھپا دیتا ہے جو ہوم اسکرین پر نہیں ہیں، تاکہ اشتہارات اور فضول اطلاعات بند ہو جائیں۔ کالز، پیغامات، الارم اور ٹائلز والی ایپس کی اطلاعات آتی رہیں گی۔</string>
+    <string name="quiet_switch">فضول اطلاعات چھپائیں</string>
+    <string name="quiet_allow_more">دوسری ایپس کو بھی اجازت دیں…</string>
+    <string name="quiet_allow_title">اطلاع دینے کی اجازت والی ایپس</string>
+    <string name="check_quiet">اطلاعات تک رسائی (خاموش موڈ)</string>
+    <string name="quiet_disclosure_title">خاموش موڈ کے بارے میں</string>
+    <string name="quiet_disclosure_msg">فضول اطلاعات چھپانے کے لیے فیملی گرڈ کو اطلاعات تک رسائی چاہیے۔ یہ صرف دیکھتا ہے کہ اطلاع کس ایپ نے بھیجی، اور اگر اس ایپ کو اجازت نہیں تو اسے چھپا دیتا ہے۔\n\nاطلاعات کا متن کبھی پڑھا، محفوظ یا شیئر نہیں کیا جاتا۔\n\nاگلی اسکرین پر \"FamilyGrid quiet mode\" ڈھونڈیں اور آن کریں۔</string>
+
+    <!-- short guides shown before sending people to Android settings -->
+    <string name="guide_title">آگے کیا کرنا ہے</string>
+    <string name="guide_home">اگلی اسکرین پر \"FamilyGrid Launcher\" کو ہوم ایپ کے طور پر چنیں۔\n\nاگر پوچھا جائے تو \"ہمیشہ\" (Always) دبائیں۔</string>
+    <string name="guide_call">اینڈرائیڈ پوچھے گا کہ کیا فیملی گرڈ فون کال کر سکتا ہے۔ \"اجازت دیں\" (Allow) دبائیں۔\n\nاگر اس کے بجائے ایپ کی سیٹنگز کھلیں تو Permissions ← Phone ← Allow دبائیں۔</string>
+    <string name="guide_bt">اینڈرائیڈ \"قریبی آلات\" (Nearby devices) کے بارے میں پوچھے گا۔ \"اجازت دیں\" دبائیں۔\n\nاگر ایپ کی سیٹنگز کھلیں تو Permissions ← Nearby devices ← Allow دبائیں۔</string>
+    <string name="continue_btn">جاری رکھیں</string>
 </resources>

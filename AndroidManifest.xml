@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dev.fluxnova.familygrid"
-    android:versionCode="3"
-    android:versionName="0.3.0">
+    android:versionCode="4"
+    android:versionName="0.4.0">
     <uses-sdk android:minSdkVersion="24" android:targetSdkVersion="34"/>
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -25,6 +25,9 @@
         <!-- used to find this phone's camera and web browser for the default tiles -->
         <intent>
             <action android:name="android.media.action.STILL_IMAGE_CAMERA"/>
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.SHOW_ALARMS"/>
         </intent>
         <intent>
             <action android:name="android.intent.action.VIEW"/>
@@ -80,6 +83,17 @@
             </intent-filter>
             <meta-data android:name="android.accessibilityservice"
                 android:resource="@xml/navbar_service"/>
+        </service>
+
+        <!-- Optional "Quiet mode": hides notifications from apps that aren't allowed.
+             The user grants notification access in Android settings. -->
+        <service android:name=".QuietService"
+            android:exported="true"
+            android:label="@string/quiet_label"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService"/>
+            </intent-filter>
         </service>
     </application>
 </manifest>

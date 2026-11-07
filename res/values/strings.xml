@@ -143,4 +143,22 @@
     <string name="navbar_disclosure_msg">FamilyGrid uses Android\'s Accessibility service only to draw the big Back, Home and Apps buttons, and to go Back or Home when you tap them.\n\nIt does not read what is on your screen. Nothing is collected, stored or shared.\n\nOn the next screen, find \"FamilyGrid big buttons\" and switch it on.</string>
     <string name="agree_continue">Agree and continue</string>
     <string name="no_thanks">No thanks</string>
+
+    <!-- quiet mode -->
+    <string name="quiet_label">FamilyGrid quiet mode</string>
+    <string name="section_quiet">Quiet mode</string>
+    <string name="quiet_help">Hides notifications from apps that are not on the home screen, so ads and junk alerts stop. Calls, messages, alarms and the apps on the tiles still come through.</string>
+    <string name="quiet_switch">Hide junk notifications</string>
+    <string name="quiet_allow_more">Also allow other apps…</string>
+    <string name="quiet_allow_title">Apps allowed to notify</string>
+    <string name="check_quiet">Notification access (quiet mode)</string>
+    <string name="quiet_disclosure_title">About quiet mode</string>
+    <string name="quiet_disclosure_msg">To hide junk notifications, FamilyGrid needs notification access. It only looks at which app sent each notification, and hides it if that app is not allowed.\n\nThe text of notifications is never read, stored or shared.\n\nOn the next screen, find \"FamilyGrid quiet mode\" and switch it on.</string>
+
+    <!-- short guides shown before sending people to Android settings -->
+    <string name="guide_title">What to do next</string>
+    <string name="guide_home">On the next screen, choose \"FamilyGrid Launcher\" as the Home app.\n\nIf Android asks, tap \"Always\".</string>
+    <string name="guide_call">Android will ask if FamilyGrid may make phone calls. Tap \"Allow\".\n\nIf the app\'s settings open instead, tap Permissions → Phone → Allow.</string>
+    <string name="guide_bt">Android will ask about \"Nearby devices\". Tap \"Allow\".\n\nIf the app\'s settings open instead, tap Permissions → Nearby devices → Allow.</string>
+    <string name="continue_btn">Continue</string>
 </resources>

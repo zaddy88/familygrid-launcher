@@ -138,4 +138,22 @@
     <string name="navbar_disclosure_msg">FamilyGrid, Android-এর Accessibility সেবা শুধু বড় পেছনে, হোম ও অ্যাপ বোতাম দেখাতে এবং সেগুলো চাপলে পেছনে বা হোমে যেতে ব্যবহার করে।\n\nএটি আপনার স্ক্রিনের কিছুই পড়ে না। কোনো তথ্য সংগ্রহ, সংরক্ষণ বা শেয়ার করা হয় না।\n\nপরের স্ক্রিনে \"FamilyGrid big buttons\" খুঁজে চালু করুন।</string>
     <string name="agree_continue">রাজি, এগিয়ে যান</string>
     <string name="no_thanks">না, ধন্যবাদ</string>
+
+    <!-- quiet mode -->
+    <string name="quiet_label">FamilyGrid নীরব মোড</string>
+    <string name="section_quiet">নীরব মোড</string>
+    <string name="quiet_help">যে অ্যাপগুলো হোম স্ক্রিনে নেই তাদের বিজ্ঞপ্তি লুকায়, যাতে বিজ্ঞাপন ও বাজে সতর্কতা বন্ধ হয়। কল, বার্তা, অ্যালার্ম ও টাইলের অ্যাপের বিজ্ঞপ্তি আসতে থাকবে।</string>
+    <string name="quiet_switch">বাজে বিজ্ঞপ্তি লুকান</string>
+    <string name="quiet_allow_more">অন্য অ্যাপকেও অনুমতি দিন…</string>
+    <string name="quiet_allow_title">বিজ্ঞপ্তি দেওয়ার অনুমতিপ্রাপ্ত অ্যাপ</string>
+    <string name="check_quiet">বিজ্ঞপ্তি অ্যাক্সেস (নীরব মোড)</string>
+    <string name="quiet_disclosure_title">নীরব মোড সম্পর্কে</string>
+    <string name="quiet_disclosure_msg">বাজে বিজ্ঞপ্তি লুকাতে FamilyGrid-এর বিজ্ঞপ্তি অ্যাক্সেস দরকার। এটি শুধু দেখে কোন অ্যাপ বিজ্ঞপ্তিটি পাঠিয়েছে, আর সেই অ্যাপের অনুমতি না থাকলে লুকিয়ে দেয়।\n\nবিজ্ঞপ্তির লেখা কখনো পড়া, সংরক্ষণ বা শেয়ার করা হয় না।\n\nপরের স্ক্রিনে \"FamilyGrid quiet mode\" খুঁজে চালু করুন।</string>
+
+    <!-- short guides shown before sending people to Android settings -->
+    <string name="guide_title">এরপর কী করবেন</string>
+    <string name="guide_home">পরের স্ক্রিনে \"FamilyGrid Launcher\"-কে হোম অ্যাপ হিসেবে বেছে নিন।\n\nAndroid জিজ্ঞেস করলে \"সবসময়\" (Always) চাপুন।</string>
+    <string name="guide_call">Android জিজ্ঞেস করবে FamilyGrid ফোন কল করতে পারবে কি না। \"অনুমতি দিন\" (Allow) চাপুন।\n\nঅ্যাপের সেটিংস খুললে Permissions → Phone → Allow চাপুন।</string>
+    <string name="guide_bt">Android \"কাছাকাছি ডিভাইস\" (Nearby devices) সম্পর্কে জিজ্ঞেস করবে। \"অনুমতি দিন\" চাপুন।\n\nঅ্যাপের সেটিংস খুললে Permissions → Nearby devices → Allow চাপুন।</string>
+    <string name="continue_btn">চালিয়ে যান</string>
 </resources>

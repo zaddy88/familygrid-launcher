@@ -138,4 +138,22 @@
     <string name="navbar_disclosure_msg">FamilyGrid, Android की Accessibility सेवा का उपयोग केवल बड़े वापस, होम और ऐप्स बटन दिखाने और उन्हें दबाने पर वापस या होम जाने के लिए करता है।\n\nयह आपकी स्क्रीन पर कुछ नहीं पढ़ता। कोई जानकारी इकट्ठा, सेव या शेयर नहीं की जाती।\n\nअगली स्क्रीन पर \"FamilyGrid big buttons\" ढूँढें और चालू करें।</string>
     <string name="agree_continue">सहमत हूँ, आगे बढ़ें</string>
     <string name="no_thanks">नहीं, धन्यवाद</string>
+
+    <!-- quiet mode -->
+    <string name="quiet_label">FamilyGrid शांत मोड</string>
+    <string name="section_quiet">शांत मोड</string>
+    <string name="quiet_help">उन ऐप्स की सूचनाएँ छिपाता है जो होम स्क्रीन पर नहीं हैं, ताकि विज्ञापन और फालतू अलर्ट बंद हो जाएँ। कॉल, संदेश, अलार्म और टाइल वाले ऐप्स की सूचनाएँ आती रहेंगी।</string>
+    <string name="quiet_switch">फालतू सूचनाएँ छिपाएँ</string>
+    <string name="quiet_allow_more">दूसरे ऐप्स को भी अनुमति दें…</string>
+    <string name="quiet_allow_title">सूचना देने की अनुमति वाले ऐप्स</string>
+    <string name="check_quiet">सूचना पहुँच (शांत मोड)</string>
+    <string name="quiet_disclosure_title">शांत मोड के बारे में</string>
+    <string name="quiet_disclosure_msg">फालतू सूचनाएँ छिपाने के लिए FamilyGrid को सूचना पहुँच चाहिए। यह केवल देखता है कि सूचना किस ऐप ने भेजी, और अगर उस ऐप को अनुमति नहीं है तो उसे छिपा देता है।\n\nसूचनाओं का टेक्स्ट कभी पढ़ा, सेव या शेयर नहीं किया जाता।\n\nअगली स्क्रीन पर \"FamilyGrid quiet mode\" ढूँढें और चालू करें।</string>
+
+    <!-- short guides shown before sending people to Android settings -->
+    <string name="guide_title">आगे क्या करें</string>
+    <string name="guide_home">अगली स्क्रीन पर \"FamilyGrid Launcher\" को होम ऐप चुनें।\n\nअगर Android पूछे, तो \"हमेशा\" (Always) दबाएँ।</string>
+    <string name="guide_call">Android पूछेगा कि क्या FamilyGrid फ़ोन कॉल कर सकता है। \"अनुमति दें\" (Allow) दबाएँ।\n\nअगर ऐप की सेटिंग्स खुलें, तो Permissions → Phone → Allow दबाएँ।</string>
+    <string name="guide_bt">Android \"आस-पास के डिवाइस\" (Nearby devices) के बारे में पूछेगा। \"अनुमति दें\" दबाएँ।\n\nअगर ऐप की सेटिंग्स खुलें, तो Permissions → Nearby devices → Allow दबाएँ।</string>
+    <string name="continue_btn">जारी रखें</string>
 </resources>

@@ -138,4 +138,22 @@
     <string name="navbar_disclosure_msg">يستخدم FamilyGrid خدمة إمكانية الوصول في أندرويد فقط لرسم أزرار رجوع والرئيسية والتطبيقات الكبيرة، وللرجوع أو الذهاب إلى الرئيسية عند الضغط عليها.\n\nلا يقرأ ما على شاشتك. لا يتم جمع أي معلومات أو حفظها أو مشاركتها.\n\nفي الشاشة التالية، ابحث عن \"FamilyGrid big buttons\" وفعّلها.</string>
     <string name="agree_continue">أوافق وأتابع</string>
     <string name="no_thanks">لا، شكراً</string>
+
+    <!-- quiet mode -->
+    <string name="quiet_label">وضع الهدوء في FamilyGrid</string>
+    <string name="section_quiet">وضع الهدوء</string>
+    <string name="quiet_help">يُخفي إشعارات التطبيقات غير الموجودة على الشاشة الرئيسية، فتتوقف الإعلانات والتنبيهات المزعجة. تبقى المكالمات والرسائل والمنبهات وتطبيقات المربعات تصل كالمعتاد.</string>
+    <string name="quiet_switch">إخفاء الإشعارات المزعجة</string>
+    <string name="quiet_allow_more">السماح لتطبيقات أخرى أيضاً…</string>
+    <string name="quiet_allow_title">التطبيقات المسموح لها بالإشعار</string>
+    <string name="check_quiet">الوصول إلى الإشعارات (وضع الهدوء)</string>
+    <string name="quiet_disclosure_title">حول وضع الهدوء</string>
+    <string name="quiet_disclosure_msg">لإخفاء الإشعارات المزعجة يحتاج FamilyGrid إلى الوصول إلى الإشعارات. ينظر فقط إلى التطبيق الذي أرسل كل إشعار، ويخفيه إذا لم يكن مسموحاً له.\n\nلا يُقرأ نص الإشعارات أبداً ولا يُحفظ ولا يُشارك.\n\nفي الشاشة التالية، ابحث عن \"FamilyGrid quiet mode\" وفعّله.</string>
+
+    <!-- short guides shown before sending people to Android settings -->
+    <string name="guide_title">ماذا تفعل بعد ذلك</string>
+    <string name="guide_home">في الشاشة التالية، اختر \"FamilyGrid Launcher\" كتطبيق الشاشة الرئيسية.\n\nإذا سأل أندرويد، اضغط \"دائماً\".</string>
+    <string name="guide_call">سيسأل أندرويد إن كان مسموحاً لـ FamilyGrid بإجراء المكالمات. اضغط \"سماح\".\n\nإذا فُتحت إعدادات التطبيق بدلاً من ذلك، اضغط الأذونات ← الهاتف ← سماح.</string>
+    <string name="guide_bt">سيسأل أندرويد عن \"الأجهزة المجاورة\". اضغط \"سماح\".\n\nإذا فُتحت إعدادات التطبيق بدلاً من ذلك، اضغط الأذونات ← الأجهزة المجاورة ← سماح.</string>
+    <string name="continue_btn">متابعة</string>
 </resources>

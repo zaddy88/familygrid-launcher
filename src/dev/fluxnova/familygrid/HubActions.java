@@ -144,6 +144,44 @@ final class HubActions {
         return "android".equals(pkg) ? null : pkg; // "android" = the "choose an app" screen
     }
 
+    /**
+     * Apps that may still notify in Quiet mode: everything on a tile, the extras the family
+     * picked, and the essentials (calls, messages, alarms, Android itself).
+     */
+    static java.util.Set<String> quietAllowList(Context c) {
+        java.util.Set<String> s = new java.util.HashSet<>(HubConfig.quietExtras(c));
+        for (HubConfig.Tile t : HubConfig.load(c)) if (t.pkg != null) s.add(t.pkg);
+        s.add(c.getPackageName());
+        s.add("android");
+        s.add("com.android.systemui");
+        s.add("com.android.phone");
+        s.add("com.android.server.telecom");
+        s.add("com.android.providers.downloads");
+        try {
+            android.telecom.TelecomManager tm =
+                (android.telecom.TelecomManager) c.getSystemService(Context.TELECOM_SERVICE);
+            if (tm != null && tm.getDefaultDialerPackage() != null) s.add(tm.getDefaultDialerPackage());
+        } catch (RuntimeException ignored) {}
+        String sms = appFor(c, ROLE_SMS);
+        if (sms != null) s.add(sms);
+        String clock = handler(c, new Intent(android.provider.AlarmClock.ACTION_SHOW_ALARMS));
+        if (clock != null) s.add(clock);
+        return s;
+    }
+
+    /** This app's own page in Android settings (Permissions live there). */
+    static void openAppDetails(Context c) {
+        Intent i = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+            Uri.fromParts("package", c.getPackageName(), null)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (!start(c, i)) openSettings(c);
+    }
+
+    static void openNotificationAccess(Context c) {
+        Intent i = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (!start(c, i)) openSettings(c);
+    }
+
     /** true when pressing Home opens FamilyGrid (it is the chosen default home app). */
     static boolean isDefaultHome(Context c) {
         Intent home = new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME);
