@@ -22,3 +22,7 @@ Thumbs.db
 # Play bundles and helper output
 *.aab
 *.apks
+
+# private Google Play notes (kept local only)
+docs/PLAY_STORE.md
+docs/PUBLISHING.md
