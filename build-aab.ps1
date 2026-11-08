@@ -57,8 +57,11 @@ if (-not $env:FAMILYGRID_KS_PASS) {
 }
 try {
     & "$jdk\bin\jarsigner.exe" -keystore $ks -storepass:env FAMILYGRID_KS_PASS -keypass:env FAMILYGRID_KS_PASS `
-        -sigalg SHA256withRSA -digestalg SHA-256 "$proj\out\FamilyGrid.aab" $alias | Out-Null
-    if ($LASTEXITCODE -ne 0) { throw "jarsigner failed (wrong password or alias?)" }
+        -sigalg SHA256withRSA -digestalg SHA-256 "$proj\out\FamilyGrid.aab" $alias 2>&1 |
+        ForEach-Object { "$_" } | Where-Object { $_ -notmatch '^\s*$' } | Write-Output
+    if ($LASTEXITCODE -ne 0) {
+        throw "jarsigner failed. 'keystore password was incorrect' = wrong password; 'alias' = wrong alias. Message is shown above."
+    }
 } finally {
     if ($setHere) { Remove-Item Env:FAMILYGRID_KS_PASS }
 }
