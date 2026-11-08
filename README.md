@@ -214,7 +214,7 @@ If the switch for **FamilyGrid big buttons** or **Quiet mode** is greyed out wit
 |---|---|
 | **Minimum** | Android **7.0** (Nougat, API 24) |
 | **Built for** | Android **16** (API 36) |
-| **Tested on** | TECNO POVA (Android 10, HiOS 7) · OnePlus 10 Pro (OxygenOS) · OnePlus 8T (OxygenOS) |
+| **Tested on** | TECNO POVA (Android 10, HiOS 7) · OnePlus 10 Pro and OnePlus 8T (OxygenOS, including Android 16) |
 | Shrinking long names | Android 8.0+ (on 7.x long names are shortened with "…") |
 | Bluetooth device names | All versions; Android 12+ asks for the *Nearby devices* permission |
 | Quiet mode | All versions (needs *notification access*) |
