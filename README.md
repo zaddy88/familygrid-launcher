@@ -3,7 +3,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/zaddy88/familygrid-launcher/releases/latest/download/FamilyGrid.apk"><b>📥 Download FamilyGrid.apk (direct link)</b></a> · Android 7.0+ · free, no ads
+  <a href="https://github.com/zaddy88/familygrid-launcher/releases/latest/download/FamilyGrid.apk"><b>📥 Download FamilyGrid.apk (direct link)</b></a> · Android 7.0+ · free, no ads<br>
+  <sub>Blocked by Play Protect? See <a href="#-app-blocked-to-protect-your-device">how to install</a>.</sub>
 </p>
 
 <p align="center">
@@ -177,11 +178,35 @@ exactly what came back.
 
 ## 📥 Download & install
 
-1. Download **[FamilyGrid.apk](https://github.com/zaddy88/familygrid-launcher/releases/latest/download/FamilyGrid.apk)** (always the latest version), or pick one from the
-   [releases page](https://github.com/zaddy88/familygrid-launcher/releases).
-2. Open it on the phone and allow *Install unknown apps* for your browser or file manager when asked.
-3. Open **FamilyGrid Settings** from the app drawer and follow the setup check.
-4. Press **Home** and choose **FamilyGrid Launcher → Always**.
+1. **Pause Play Protect** (see why below): open the **Play Store** → tap your **profile picture** →
+   **Play Protect** → **⚙ gear** → turn off **Scan apps with Play Protect**.
+2. **Download** on the phone: **[FamilyGrid.apk](https://github.com/zaddy88/familygrid-launcher/releases/latest/download/FamilyGrid.apk)**
+   (always the latest version), or pick one from the [releases page](https://github.com/zaddy88/familygrid-launcher/releases).
+3. **Install:** tap the downloaded file. If asked, allow **Install unknown apps** for your browser, then tap **Install**.
+4. **Turn Play Protect back on** (same place as step 1). FamilyGrid stays installed.
+5. Press **Home** and choose **FamilyGrid Launcher → Always**.
+6. Open **FamilyGrid Settings** from the app drawer and follow the setup check.
+
+### ⚠️ "App blocked to protect your device"?
+
+Google **Play Protect** blocks apps installed from outside the Play Store if they can use
+*Accessibility* or *Notification access*. FamilyGrid uses them only for the optional big buttons and
+Quiet mode, and they stay **off** until you switch them on. You can get past the block in any of these ways:
+
+- On the warning, tap **More details → Install anyway** (some countries don't show this button), **or**
+- pause Play Protect as in step 1 above, install, then switch it back on, **or**
+- install from a computer with USB debugging: `adb install FamilyGrid.apk` (no warning).
+
+### 🔒 "Restricted setting" (Android 13 and newer)
+
+If the switch for **FamilyGrid big buttons** or **Quiet mode** is greyed out with *Restricted setting*:
+
+1. Go to **Settings → Apps → FamilyGrid**.
+2. Tap the **⋮ menu** (top right) → **Allow restricted settings**, and confirm with your PIN or fingerprint.
+3. Go back and switch the service on.
+
+> On some phones the ⋮ menu only appears after you've tried once to switch the service on.
+> Installing from Google Play (coming soon) avoids both of these warnings.
 
 ### Supported Android versions
 
